@@ -19,9 +19,7 @@ from pages.login_page import LoginPage
 
 class Dashboard(BasePage):
     expected_title = "Scouts panel"
-    expected_title_add_player = "Add player"
     dashboard_url = "https://scouts-test.futbolkolektyw.pl/"
-    add_player_url = "https://scouts-test.futbolkolektyw.pl/en/players/add"
 
     def log_in_to_dashboard(self):
         user_login = LoginPage(self.driver)
@@ -40,6 +38,3 @@ class Dashboard(BasePage):
 
         assert self.get_page_title(self.dashboard_url) == self.expected_title
 
-    def add_player_title_of_page(self):
-        time.sleep(4)
-        assert BasePage.get_page_title(self.add_player_url) == self.expected_title_add_player

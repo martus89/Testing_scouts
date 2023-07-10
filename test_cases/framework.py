@@ -62,7 +62,6 @@ class TestMediumPage(unittest.TestCase):
         test_steps_completed.append(f"Step 2: " + msg)
         assert actual_title == expected_title
 
-
     @classmethod
     def tearDown(self):
         self.driver.quit()
