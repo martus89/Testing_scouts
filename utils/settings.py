@@ -6,7 +6,9 @@ from selenium.webdriver.common.by import By
 SYSTEM = sys.platform
 PATH_TO_PROJECT = os.path.dirname(os.path.abspath(__file__))
 
-if SYSTEM == 'win32':
+# win32
+
+if SYSTEM == 'mac':
     CHROME_DRIVER = "chromedriver.exe"
 else:
     CHROME_DRIVER = "chromedriver"
@@ -21,7 +23,7 @@ DEFAULT_LOCATOR_TYPE = By.XPATH
 UPPERCASE_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 LOWERCASE_LETTERS = "abcdefghijklmnopqrstuvwxyz"
 
-if SYSTEM == 'windows':
+if SYSTEM == 'macos':
     CHROME_DRIVER = 'chromedriver.exe'
     FIREFOX_DRIVER = 'geckodriver.exe'
     EDGE_DRIVER = 'MicrosoftWebDriver.exe'
