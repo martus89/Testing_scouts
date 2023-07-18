@@ -72,7 +72,3 @@ login_button_xpath
 <li>//span[@class="MuiTouchRipple-root"]</li>
 <li>//child::button/span[2]</li>
 <li>//span[text()="Sign in" or text()="Zaloguj"]</li>
-
-
-<hr style="height:1px;background-color:gray">
-<h2>Subtask 3: Dodawanie selektorów do projektu</h2>

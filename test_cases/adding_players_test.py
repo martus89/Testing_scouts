@@ -1,14 +1,13 @@
 import unittest
 import os
 from selenium import webdriver
-
-from pages.dashboard import Dashboard
-from test_cases.universal_test_methods import UniversalTestMethods
+from pages.add_player import AddPlayer
+from pages.base_page import BasePage
+from pages.edit_player import EditPlayer
+from test_cases.base_test_cases import BaseTestCases
 from utils.settings import DRIVER_PATH, IMPLICITLY_WAIT
 from selenium.webdriver.chrome.service import Service
 
-
-# Week 3 Subtask 4: Powtórzenie tego, co już wiemy
 
 class TestAddPlayer(unittest.TestCase):
 
@@ -20,16 +19,17 @@ class TestAddPlayer(unittest.TestCase):
         self.driver.get('https://scouts-test.futbolkolektyw.pl/en')
         self.driver.implicitly_wait(IMPLICITLY_WAIT)
 
-    def test_path_to_add_player(self):
-        Dashboard.dashboard_log_in(self)
-        Dashboard.dashboard_add_player_button_click(self)
-
     def test_title_of_add_player(self):
-        TestAddPlayer.test_path_to_add_player(self)
-        page_url = "https://scouts-test.futbolkolektyw.pl/en/players/add"
-        expected_title = "Add player"
-        print(f"Asserting {UniversalTestMethods.get_page_title(self, page_url=page_url)} vs {expected_title}...")
-        assert UniversalTestMethods.get_page_title(self, page_url=page_url) == expected_title
+        AddPlayer.path_to_add_player(self)
+        BasePage.wait_for_element_to_be_clickable(self, locator=AddPlayer.add_player_submit_button_xpath)
+        BaseTestCases.assert_title_of_page_for_testing(self, expected_title=BasePage.get_page_title(self, page_url=AddPlayer.add_player_page_url))
+
+    def test_add_player_restricted_data_only(self):
+        AddPlayer.path_to_add_player(self)
+        AddPlayer.add_player_form_restricted_data_only_fill_up(self)
+        BasePage.wait_for_element_to_be_clickable(self, locator=EditPlayer.edit_player_menu_player_name_xpath)
+        EditPlayer.wait_for_alert_turnaround(self, locator=EditPlayer.edit_player_player_added_popup_container)
+        BaseTestCases.assert_page_redirected_partly(self, url_to_check=EditPlayer.edit_player_url_for_check(self))
 
     @classmethod
     def tearDown(self):
