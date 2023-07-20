@@ -21,7 +21,6 @@ class TestAddPlayer(unittest.TestCase):
 
     def test_title_of_add_player(self):
         AddPlayer.path_to_add_player(self)
-        BasePage.wait_for_element_to_be_clickable(self, locator=AddPlayer.add_player_submit_button_xpath)
         BaseTestCases.assert_title_of_page_for_testing(self, expected_title=BasePage.get_page_title(self, page_url=AddPlayer.add_player_page_url))
 
     def test_add_player_restricted_data_only(self):

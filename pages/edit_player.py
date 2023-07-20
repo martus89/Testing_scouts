@@ -1,6 +1,5 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from pages.base_page import BasePage
-from utils.settings import DEFAULT_LOCATOR_TYPE
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -19,5 +18,6 @@ class EditPlayer(BasePage):
         return current_url_slice
 
     def wait_for_alert_turnaround(self, locator_type=By.XPATH):
-        wait = WebDriverWait(self.driver, timeout=40)
+        """Waiting until alert from current XPath disappears"""
+        wait = WebDriverWait(self.driver, timeout=60)
         element_present = wait.until_not(EC.visibility_of_element_located((locator_type, EditPlayer.edit_player_player_added_popup_container)))

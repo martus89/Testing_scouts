@@ -1,4 +1,6 @@
 <meta charset="UTF-8">
+<h1><a href="https://drive.google.com/drive/folders/1w3fDOcsQiULcTEN04eUFY1Uuzuc3ASXT?usp=drive_link">Moje pliki google</a>
+
 <h1>Podzadanie 1: konfiguracja oprogramowania.</h1>
 <h2>Podzadanie 1: Dlaczego zdecydowałem się wziąć udział w wyzwaniu Dare IT Challenge?</h2>
 
@@ -72,3 +74,7 @@ login_button_xpath
 <li>//span[@class="MuiTouchRipple-root"]</li>
 <li>//child::button/span[2]</li>
 <li>//span[text()="Sign in" or text()="Zaloguj"]</li>
+
+
+
+

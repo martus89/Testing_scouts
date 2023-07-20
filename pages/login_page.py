@@ -19,15 +19,18 @@ class LoginPage(BasePage):
         self.field_send_keys(self.password_field_xpath, password)
 
     def login_page_click_on_login_button(self):
+        BasePage.wait_for_element_to_be_clickable(self, locator=LoginPage.sign_in_button_xpath)
         return self.click_on_the_element(self.sign_in_button_xpath)
 
     def user_log_in(self):
+        """User logging in with correct data"""
         user_login = LoginPage(self.driver)
         user_login.login_page_type_in_email(LoginPage.email)
         user_login.login_page_type_in_password(LoginPage.password)
         user_login.login_page_click_on_login_button()
 
     def user_log_in_incorrect_password(self):
+        """User logging in with incorrect password"""
         user_login = LoginPage(self.driver)
         user_login.login_page_type_in_email(LoginPage.email)
         user_login.login_page_type_in_password(LoginPage.incorrect_password)

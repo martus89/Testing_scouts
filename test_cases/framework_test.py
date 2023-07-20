@@ -23,9 +23,6 @@ class TestOpenWebpage(unittest.TestCase):
         print("WELL DONE!!!!!!!!!")
 
 
-
-# Subtask 2: Nowy przypadek testowy
-
 test_steps_completed = []
 
 

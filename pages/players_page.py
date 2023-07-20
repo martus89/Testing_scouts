@@ -1,12 +1,5 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webdriver import WebDriver
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
 from pages.login_page import LoginPage
 from pages.base_page import BasePage
-
-from utils.settings import DEFAULT_LOCATOR_TYPE
-
 
 
 class PlayersDashboardPage(BasePage):
@@ -22,7 +15,16 @@ class PlayersDashboardPage(BasePage):
         return self.click_on_the_element(self.players_file_download_button_xpath)
 
     def path_to_players_file_download(self):
-        players_file = PlayersDashboardPage(self.driver)
+        players_path = PlayersDashboardPage(self.driver)
         LoginPage.user_log_in(self)
-        players_file.players_page_menu_click_on_players_button()
-        # players_file.players_dashboard_download_click_on_download_button()
+        players_path.players_page_menu_click_on_players_button()
+
+    def download_players_dashboard_file(self):
+        """User downloading player's csv file from player's dashboard"""
+        PlayersDashboardPage.path_to_players_file_download(self)
+        file_download = PlayersDashboardPage(self.driver)
+        file_download.players_dashboard_download_click_on_download_button()
+
+
+
+

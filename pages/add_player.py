@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 from pages.dashboard import Dashboard
+from pages.edit_player import EditPlayer
 
 
 class AddPlayer(BasePage):
@@ -18,6 +19,7 @@ class AddPlayer(BasePage):
 
 
     def add_player_form_restricted_data_only_fill_up(self):
+        """Adding only restricted data to add player form"""
         BasePage.wait_for_element_to_be_clickable(self, locator=AddPlayer.add_player_submit_button_xpath)
         name = self.driver.find_element(By.XPATH, AddPlayer.add_player_form_name_xpath)
         name.send_keys(AddPlayer.test_add_player_form_name_input)
@@ -28,17 +30,18 @@ class AddPlayer(BasePage):
         main_position = self.driver.find_element(By.XPATH, AddPlayer.add_player_form_main_position_xpath)
         main_position.send_keys(AddPlayer.test_add_player_form_main_position_input)
         AddPlayer.add_player_form_submit_button_click(self)
+        BasePage.wait_for_element_to_be_clickable(self, locator=EditPlayer.edit_player_menu_player_name_xpath)
+
+    def click_on_submit_button(self):
+        BasePage.wait_for_element_to_be_clickable(self, locator=AddPlayer.add_player_submit_button_xpath)
+        return self.click_on_the_element(self.add_player_submit_button_xpath)
 
     def path_to_add_player(self):
         Dashboard.dashboard_log_in(self)
         Dashboard.dashboard_add_player_button_click(self)
 
-    def click_on_submit_button(self):
-        return self.click_on_the_element(self.add_player_submit_button_xpath)
-
     def add_player_form_submit_button_click(self):
         submit_form = AddPlayer(self.driver)
-        BasePage.wait_for_element_to_be_clickable(self, locator=AddPlayer.add_player_submit_button_xpath)
         submit_form.click_on_submit_button()
 
     def add_player_url_for_check(self):
