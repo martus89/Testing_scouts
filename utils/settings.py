@@ -6,6 +6,13 @@ from selenium.webdriver.common.by import By
 SYSTEM = sys.platform
 PATH_TO_PROJECT = os.path.dirname(os.path.abspath(__file__))
 
+absolute_path = os.path.dirname(__file__)
+relative_path = "file_download_test/"
+full_path = os.path.join(absolute_path, relative_path)
+
+
+DOWNLOAD_PATH = full_path
+
 # win32
 
 if SYSTEM == 'mac':

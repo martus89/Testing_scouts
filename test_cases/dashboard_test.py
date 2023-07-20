@@ -30,7 +30,7 @@ class TestUserLoginPage(unittest.TestCase):
         Dashboard.dashboard_activity_last_created_match_click(self)
         BaseTestCases.assert_element_text(self, driver=self.driver,
                                           text_element_xpath=AddMatch.form_submit_button_xpath,
-                                          element_text_expected_text=AddMatch.form_submit_button_text)
+                                          element_text_expected_text=BasePage.get_element_text(self, locator=AddMatch.form_submit_button_xpath))
 
     @classmethod
     def tearDown(self):

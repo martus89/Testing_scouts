@@ -16,12 +16,7 @@ class DashboardXpaths(BasePage):
 
 
 class Dashboard(BasePage):
-    expected_title = "Scouts panel"
-    dashboard_url = "https://scouts-test.futbolkolektyw.pl/"
     add_player_button_xpath = "//div[2]//a/button"
-    add_player_subpage_address = "https://scouts-test.futbolkolektyw.pl/en/players/add"
-    dashboard_title_page_url = "https://scouts-test.futbolkolektyw.pl/en"
-    dashboard_expected_title = "Scouts panel"
     logout_xpath = "//div[1]/ul[2]/div[2]"
     activity_last_created_match_link_xpath = "//a[3]/button"
 

@@ -28,7 +28,7 @@ class TestAddPlayer(unittest.TestCase):
         AddPlayer.path_to_add_player(self)
         AddPlayer.add_player_form_restricted_data_only_fill_up(self)
         BasePage.wait_for_element_to_be_clickable(self, locator=EditPlayer.edit_player_menu_player_name_xpath)
-        EditPlayer.wait_for_alert_turnaround(self, locator=EditPlayer.edit_player_player_added_popup_container)
+        EditPlayer.wait_for_alert_turnaround(self)
         BaseTestCases.assert_page_redirected_partly(self, url_to_check=EditPlayer.edit_player_url_for_check(self))
 
     @classmethod

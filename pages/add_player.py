@@ -11,7 +11,6 @@ class AddPlayer(BasePage):
     add_player_form_surname_xpath = "//input[@name='surname']"
     add_player_form_main_position_xpath = "//input[@name='mainPosition']"
     add_player_form_age_xpath = "//input[@name='age']"
-
     test_add_player_form_name_input = " "
     test_add_player_form_surname_input = " "
     test_add_player_form_age_input = "15102024"
