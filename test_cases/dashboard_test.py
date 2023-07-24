@@ -10,7 +10,7 @@ from utils.settings import DRIVER_PATH, IMPLICITLY_WAIT
 from selenium.webdriver.chrome.service import Service
 
 
-class TestUserLoginPage(unittest.TestCase):
+class TestDashboardPage(unittest.TestCase):
 
     @classmethod
     def setUp(self):
