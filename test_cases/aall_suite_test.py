@@ -1,8 +1,6 @@
 import unittest
 from unittest.loader import makeSuite
 
-# from test_cases.fill_in_a_form import TestFillInaForm
-# from test_cases.framework import Test
 
 from test_cases.adding_players_test import TestAddPlayer
 from test_cases.dashboard_test import TestDashboardPage

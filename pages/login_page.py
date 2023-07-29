@@ -10,7 +10,7 @@ class LoginPage(BasePage):
     email = "user01@getnada.com"
     password = "Test-1234"
     incorrect_password = "Pest-123401332ABC"
-    login_url = "https://scouts-test.futbolkolektyw.pl/en"
+    login_url = "https://scouts.futbolkolektyw.pl/en/"
 
     def login_page_type_in_email(self, email):
         self.field_send_keys(self.login_field_xpath, email)

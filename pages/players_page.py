@@ -4,7 +4,7 @@ from pages.base_page import BasePage
 
 class PlayersDashboardPage(BasePage):
     menu_player_button_xpath = "//ul[1]/div[@role='button'][2]"
-    players_file_download_button_xpath = "//div[1]//div[2]/button"
+    players_file_download_button_xpath = "//button[contains(@data-testid,'Download CSV')]"
 
     def players_page_menu_click_on_players_button(self):
         BasePage.wait_for_element_to_be_clickable(self, locator=PlayersDashboardPage.menu_player_button_xpath)
