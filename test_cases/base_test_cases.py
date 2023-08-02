@@ -20,7 +20,7 @@ class BaseTestCases(BasePage):
         """
         element = driver.find_element(by=By.XPATH, value=text_element_xpath)
         element_text = element.text
-        print(f"Asserting {element_text_expected_text} vs {element_text}... ")
+        print(f"Asserting text of the element is {element_text_expected_text} vs {element_text}... ")
         assert element_text_expected_text == element_text
 
     def assert_page_redirected_partly(self, url_to_check):

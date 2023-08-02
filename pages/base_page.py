@@ -19,7 +19,7 @@ class BasePage:
 
     def wait_for_element_to_be_clickable(self, locator, locator_type=DEFAULT_LOCATOR_TYPE):
         """Waiting for element of page to be clickable"""
-        wait = WebDriverWait(self.driver, 45)
+        wait = WebDriverWait(self.driver, timeout=45)
         element = wait.until(EC.element_to_be_clickable((locator_type, locator)))
 
     def wait_for_element_to_be_present(self, locator, locator_type=DEFAULT_LOCATOR_TYPE):

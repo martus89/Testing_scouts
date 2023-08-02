@@ -16,7 +16,6 @@ class PlayersDashboardPage(BasePage):
 
     def path_to_players_file_download(self):
         players_path = PlayersDashboardPage(self.driver)
-        LoginPage.user_log_in(self)
         players_path.players_page_menu_click_on_players_button()
 
     def download_players_dashboard_file(self):

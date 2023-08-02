@@ -7,7 +7,7 @@ from pages.edit_player import EditPlayer
 class AddPlayer(BasePage):
     add_player_page_url = "https://scouts-test.futbolkolektyw.pl/en/players/add"
     add_player_expected_page_title = "Add player"
-    add_player_submit_button_xpath = "//main//form/*/button[1]"
+    add_player_submit_button_xpath = "//form/*/button[1]"
     add_player_form_name_xpath = "//input[@name='name']"
     add_player_form_surname_xpath = "//input[@name='surname']"
     add_player_form_main_position_xpath = "//input[@name='mainPosition']"
@@ -37,7 +37,6 @@ class AddPlayer(BasePage):
         return self.click_on_the_element(self.add_player_submit_button_xpath)
 
     def path_to_add_player(self):
-        Dashboard.dashboard_log_in(self)
         Dashboard.dashboard_add_player_button_click(self)
 
     def add_player_form_submit_button_click(self):

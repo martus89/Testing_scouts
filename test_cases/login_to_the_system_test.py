@@ -34,4 +34,9 @@ class TestUserLoginPage(unittest.TestCase):
 
     @classmethod
     def tearDown(self):
+        if BasePage.get_page_url(self) != 'https://scouts-test.futbolkolektyw.pl/en/login?redirected=true':
+            Dashboard.dashboard_sign_out_button_click(self)
+        else:
+            pass
+        BasePage.wait_for_element_to_be_clickable(self, locator=LoginPage.sign_in_button_xpath)
         self.driver.quit()
