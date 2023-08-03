@@ -8,15 +8,15 @@ class Dashboard(BasePage):
     activity_last_created_match_link_xpath = "//a[3]/button"
 
     def click_on_add_player_button(self):
-        BasePage.wait_for_element_to_be_clickable(self, locator=self.add_player_button_xpath)
+        BasePage.wait_for_element_to_be_clickable(self, locator=Dashboard.add_player_button_xpath)
         return self.click_on_the_element(self.add_player_button_xpath)
 
     def click_on_sign_out_button(self):
-        BasePage.wait_for_element_to_be_clickable(self, locator=self.logout_xpath)
+        BasePage.wait_for_element_to_be_clickable(self, locator=Dashboard.logout_xpath)
         return self.click_on_the_element(self.logout_xpath)
 
     def click_on_last_created_match_button(self):
-        BasePage.wait_for_element_to_be_clickable(self, locator=self.activity_last_created_match_link_xpath)
+        BasePage.wait_for_element_to_be_clickable(self, locator=Dashboard.activity_last_created_match_link_xpath)
         return self.click_on_the_element(self.activity_last_created_match_link_xpath)
 
     def dashboard_log_in(self):
