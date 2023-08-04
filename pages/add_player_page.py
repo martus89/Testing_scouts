@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
-from pages.dashboard import Dashboard
-from pages.edit_player import EditPlayer
+from pages.dashboard_page import Dashboard
+from pages.edit_player_page import EditPlayer
 
 
 class AddPlayer(BasePage):

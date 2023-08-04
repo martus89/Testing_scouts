@@ -1,13 +1,14 @@
 import unittest
 from pages.base_page import BasePage
-from pages.dashboard import Dashboard
+from pages.dashboard_page import Dashboard
 from pages.login_page import LoginPage
-from pages.players_page import PlayersDashboardPage
+from pages.players_page import PlayersPage
 from utils.settings import DRIVER_PATH, IMPLICITLY_WAIT
 from selenium.webdriver.chrome.service import Service
 from selenium import webdriver
 import os
 import random
+import time
 
 
 class TestPlayersDashboardPage(unittest.TestCase):
@@ -37,22 +38,23 @@ class TestPlayersDashboardPage(unittest.TestCase):
 
     def test_download_file_verify(self):
         """Verifying if file gets downloaded to the desired file and renamed correctly"""
-        PlayersDashboardPage.path_to_players_file_download(self)
-        PlayersDashboardPage.download_players_dashboard_file(self)
-        file_absolute_path = os.path.dirname(__file__)
-        file_relative_path = "file_download_test"
-        file_full_path = os.path.join(file_absolute_path, file_relative_path)
+        Dashboard.dashboard_menu_players_button_click(self)
+        PlayersPage.initiate_download_players_dashboard_file(self)
+        file_download_absolute_path = os.path.dirname(__file__)
+        file_download_relative_path = "file_download_test"
+        file_download_full_path = os.path.join(file_download_absolute_path, file_download_relative_path)
         file_new_name = f"players_dashboard_download_{random.randint(0, 100)}.csv"
-        old_file_name = f"{file_full_path}/tableDownload.csv"
-        new_file_full_name = f"{file_full_path}/{file_new_name}"
+        old_file_name = f"{file_download_full_path}/tableDownload.csv"
+        time.sleep(5)
+        new_file_full_name = f"{file_download_full_path}/{file_new_name}"
         os.rename(old_file_name, new_file_full_name)
-        print(f"Checking if {file_relative_path} folder contains {file_new_name}...")
-        assert os.listdir(file_relative_path).__contains__(file_new_name), "File not found"
+        print(f"Checking if {file_download_relative_path} folder contains {file_new_name}...")
+        assert os.listdir(file_download_relative_path).__contains__(file_new_name), "File not found"
 
     @classmethod
     def tearDown(self):
         if BasePage.get_page_url(self) != 'https://scouts-test.futbolkolektyw.pl/en/login?redirected=true':
-            Dashboard.dashboard_sign_out_button_click(self)
+            Dashboard.dashboard_menu_sign_out_button_click(self)
         else:
             pass
         BasePage.wait_for_element_to_be_clickable(self, locator=LoginPage.sign_in_button_xpath)

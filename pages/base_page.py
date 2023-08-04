@@ -48,3 +48,12 @@ class BasePage:
         element = self.driver.find_element(By.XPATH, locator)
         print(f"Element text is {element.text}")
         return element.text
+
+    def check_language_of_webpage(self):
+        """Defines the language of page based on its address"""
+        players_page_url = BasePage.get_page_url(self)
+        actual_language_from_url = players_page_url[38:40]
+        if actual_language_from_url == "en":
+            print("Page should be all translated to english")
+        elif actual_language_from_url == "pl":
+            print("Page should be all translated to polish")

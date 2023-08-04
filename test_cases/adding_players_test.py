@@ -1,10 +1,10 @@
 import unittest
 import os
 from selenium import webdriver
-from pages.add_player import AddPlayer
+from pages.add_player_page import AddPlayer
 from pages.base_page import BasePage
-from pages.dashboard import Dashboard
-from pages.edit_player import EditPlayer
+from pages.dashboard_page import Dashboard
+from pages.edit_player_page import EditPlayer
 from pages.login_page import LoginPage
 from test_cases.base_test_cases import BaseTestCases
 from utils.settings import DRIVER_PATH, IMPLICITLY_WAIT
@@ -36,7 +36,7 @@ class TestAddPlayer(unittest.TestCase):
     @classmethod
     def tearDown(self):
         if BasePage.get_page_url(self) != 'https://scouts-test.futbolkolektyw.pl/en':
-            Dashboard.dashboard_sign_out_button_click(self)
+            Dashboard.dashboard_menu_sign_out_button_click(self)
         else:
             pass
         BasePage.wait_for_element_to_be_clickable(self, locator=LoginPage.sign_in_button_xpath)
