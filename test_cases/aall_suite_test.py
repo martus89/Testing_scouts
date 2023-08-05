@@ -7,7 +7,6 @@ from test_cases.dashboard_test import TestDashboardPage
 from test_cases.login_to_the_system_test import TestUserLoginPage
 from test_cases.players_page_test import TestPlayersDashboardPage
 
-
 def full_suite():
    test_suite = unittest.TestSuite()
    test_suite.addTest(makeSuite(TestAddPlayer))

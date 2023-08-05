@@ -27,6 +27,7 @@ class TestUserLoginPage(unittest.TestCase):
                                           element_text_expected_text=BasePage.get_element_text(self, locator=LoginPage.incorrect_password_error_xpath))
         BaseTestCases.assert_title_of_page_for_testing(self, expected_title=BasePage.get_page_title(self, BasePage.get_page_url(self)))
 
+
     def test_user_log_in_to_dashboard(self):
         LoginPage.user_log_in(self)
         BasePage.wait_for_element_to_be_clickable(self, locator=Dashboard.add_player_button_xpath)

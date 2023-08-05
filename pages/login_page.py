@@ -24,7 +24,6 @@ class LoginPage(BasePage):
     no_login_data_text_en = "Please provide your username or your e-mail."
     no_login_data_text_pl = "Please provide your username or your e-mail."
 
-
     email = "user01@getnada.com"
     password = "Test-1234"
     incorrect_password = "Pest-123401332ABC"
@@ -33,18 +32,16 @@ class LoginPage(BasePage):
     login_url_en = "https://scouts-test.futbolkolektyw.pl/en/login"
     login_url_pl = "https://scouts-test.futbolkolektyw.pl/pl/login"
 
-    !password_reminder_field_xpath = ""
-    !password_reminder_text_xpath = ""
+    password_reminder_field_and_text_xpath = "//div[1]/a"
     password_reminder_text_pl = "Przypomnij hasło"
     password_reminder_text_en = "Remind password"
 
-    !panel_main_name_field_xpath = ""
-    !panel_main_name_text_xpath = ""
+    panel_main_name_field_and_text_xpath = "//div[1]/h5"
     panel_main_name_text_pl = "Scouts Panel"
     panel_main_name_text_en = "Scouts Panel"
 
-    !language_dropdown_xpath = ""
-    !language_dropdown_text_xpath = ""
+    language_dropdown_xpath = "//div[@aria-haspopup='listbox']"
+    language_dropdown_text_xpath = "//input[@aria-hidden='true']"
     language_dropdown_text_en = "English"
     language_dropdown_text_pl = "Polski"
 
@@ -61,14 +58,14 @@ class LoginPage(BasePage):
     def user_log_in(self):
         """User logging in with correct data"""
         user_login = LoginPage(self.driver)
-        user_login.login_page_type_in_email(self.email)
-        user_login.login_page_type_in_password(self.password)
+        user_login.login_page_type_in_email(LoginPage.email)
+        user_login.login_page_type_in_password(LoginPage.password)
         user_login.login_page_click_on_login_button()
         BasePage.wait_for_element_to_be_clickable(self, locator=EditPlayer.edit_player_menu_player_name_xpath)
 
     def user_log_in_incorrect_password(self):
         """User logging in with incorrect password"""
         user_login = LoginPage(self.driver)
-        user_login.login_page_type_in_email(self.email)
-        user_login.login_page_type_in_password(self.incorrect_password)
+        user_login.login_page_type_in_email(LoginPage.email)
+        user_login.login_page_type_in_password(LoginPage.incorrect_password)
         user_login.login_page_click_on_login_button()
