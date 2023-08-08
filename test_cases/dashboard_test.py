@@ -1,7 +1,7 @@
 import os
 import unittest
 from selenium import webdriver
-from pages.add_match_of_player_page import AddMatch
+from pages.matches_list_of_player_page import AddMatch
 from pages.base_page import BasePage
 from pages.dashboard_page import Dashboard
 from pages.login_page import LoginPage

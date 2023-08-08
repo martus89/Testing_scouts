@@ -1,6 +1,10 @@
 import os
+import time
 import unittest
 from selenium import webdriver
+from selenium.webdriver.common import by
+from selenium.webdriver.common.by import By
+
 from pages.base_page import BasePage
 from pages.dashboard_page import Dashboard
 from pages.login_page import LoginPage
@@ -26,7 +30,6 @@ class TestUserLoginPage(unittest.TestCase):
                                           text_element_xpath=LoginPage.incorrect_password_error_xpath,
                                           element_text_expected_text=BasePage.get_element_text(self, locator=LoginPage.incorrect_password_error_xpath))
         BaseTestCases.assert_title_of_page_for_testing(self, expected_title=BasePage.get_page_title(self, BasePage.get_page_url(self)))
-
 
     def test_user_log_in_to_dashboard(self):
         LoginPage.user_log_in(self)

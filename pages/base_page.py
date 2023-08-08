@@ -4,7 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from utils.settings import DEFAULT_LOCATOR_TYPE
 
-
+# XPATHS DONE!
 class BasePage:
 
     def __init__(self, driver: WebDriver):

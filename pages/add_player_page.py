@@ -3,9 +3,11 @@ from pages.base_page import BasePage
 from pages.dashboard_page import Dashboard
 from pages.edit_player_page import EditPlayer
 
+# XPATHS DONE!
 
 class AddPlayer(BasePage):
-    add_player_page_url = "https://scouts-test.futbolkolektyw.pl/en/players/add"
+    add_player_page_url_en = "https://scouts-test.futbolkolektyw.pl/en/players/add"
+    add_player_page_url_pl = "https://scouts-test.futbolkolektyw.pl/pl/players/add"
 
     test_add_player_form_name_input = " "
     test_add_player_form_surname_input = " "
@@ -20,21 +22,25 @@ class AddPlayer(BasePage):
     add_player_form_name_label_xpath = "//form/div[2]//div[2]//label/text()"
     add_player_form_name_en = "Imię"
     add_player_form_name_pl = "Name"
+    add_player_form_name_required_error_xpath = "//div[2]//div[2]/div/p"
 
     add_player_form_surname_xpath = "//input[@name='surname']"
     add_player_form_surname_label_xpath = "//form//div[3]//label/text()"
     add_player_form_surname_name_en = "Surname"
     add_player_form_surname_name_pl = "Nazwisko"
+    add_player_form_surname_required_error_xpath = "//div[2]//div[3]/div/p"
 
     add_player_form_age_xpath = "//input[@name='age']"
     add_player_form_age_label_xpath = "//form//div[7]//label/text()"
     add_player_form_age_name_en = "Age"
     add_player_form_age_name_pl = "Wiek"
+    add_player_form_age_required_error_xpath = "//div[2]//div[7]/div/p"
 
     add_player_form_main_position_xpath = "//input[@name='mainPosition']"
     add_player_form_main_position_label_xpath = "//form//div[11]//label/text()"
     add_player_form_main_position_name_en = "Główna pozycja"
     add_player_form_main_position_name_pl = "Main position"
+    add_player_form_main_position_required_error_xpath = "//div[2]/div/div[11]//p"
 
     add_player_submit_button_xpath = "//form/*/button[1]"
     add_player_submit_button_label_xpath = "//button[@type='submit']/span/text()"
@@ -143,12 +149,12 @@ class AddPlayer(BasePage):
         AddPlayer.add_player_form_submit_button_click(self)
         BasePage.wait_for_element_to_be_clickable(self, locator=EditPlayer.edit_player_menu_player_name_xpath)
 
+    def path_to_add_player(self):
+        Dashboard.dashboard_add_player_button_click(self)
+
     def click_on_submit_button(self):
         BasePage.wait_for_element_to_be_clickable(self, locator=AddPlayer.add_player_submit_button_xpath)
         return self.click_on_the_element(self.add_player_submit_button_xpath)
-
-    def path_to_add_player(self):
-        Dashboard.dashboard_add_player_button_click(self)
 
     def add_player_form_submit_button_click(self):
         submit_form = AddPlayer(self.driver)

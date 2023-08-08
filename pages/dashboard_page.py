@@ -1,21 +1,21 @@
 from pages.base_page import BasePage
 
-
+# XPATHS DONE!
 class Dashboard(BasePage):
 
-    players_count_text_xpath = "//div[2]/div[1]/div/div[1]"
+    players_count_text_xpath = "//div[2]/div[1]/div/div[1]/text()"
     players_count_text_en = "Players count"
     players_count_text_pl = "Ilość graczy"
 
-    matches_count_text_xpath = "//div[2]/div[2]/div/div[1]"
+    matches_count_text_xpath = "//div[2]/div[2]/div/div[1]/text()"
     matches_count_text_en = "Matches count"
     matches_count_text_pl = "Ilość meczy"
 
-    reports_count_text_xpath = "//div[2]/div[3]/div/div[1]"
+    reports_count_text_xpath = "//div[2]/div[3]/div/div[1]/text()"
     reports_count_text_en = "Reports count"
     reports_count_text_pl = "Ilość raportów"
 
-    events_count_text_xpath = "//div[2]/div[4]/div/div[1]"
+    events_count_text_xpath = "//div[2]/div[4]/div/div[1]/text()"
     events_count_text_en = "Events count"
     events_count_text_pl = "Ilość akcji"
 
@@ -24,43 +24,43 @@ class Dashboard(BasePage):
     panel_name_upper_blue = "//h6"
     panel_name_under_logo = "//div[2]/h2"
 
-    under_logo_text_xpath = "//div[2]/p"
+    under_logo_text_xpath = "//div[2]/p/text()"
     under_logo_text_en = "Player, match and report management panel."
     under_logo_text_pl = "Panel zarządzania graczami, meczami i do tworzenia raportów."
 
-    shortcuts_text_xpath = "//div[3]/div[2]//h2"
+    shortcuts_text_xpath = "//div[3]/div[2]//h2/text()"
     shortcuts_text_en = "Shortcuts"
     shortcuts_text_pl = "Linki pomocnicze"
 
-    add_player_button_xpath = "//div[2]//button"
+    add_player_button_xpath = "//div[2]//button/text()"
     add_player_button_text_en = "Add player"
     add_player_button_text_pl = "Dodaj gracza"
 
-    activity_text_xpath = "//div[3]/div[3]//h2"
+    activity_text_xpath = "//div[3]/div[3]//h2/text()"
     activity_name_en = "Activity"
     activity_name_pl = "Aktywność"
 
-    activity_last_created_player_text_xpath = "//div[3]//h6[1]"
+    activity_last_created_player_text_xpath = "//div[3]//h6[1]/text()"
     activity_last_created_player_name_en = "Last created player"
     activity_last_created_player_name_pl = "Ostatnio stworzony gracz"
     activity_last_created_player_link_xpath = "//div[3]/div[3]//a[1]/button"
 
-    activity_last_updated_player_text_xpath = "//div[3]//h6[2]"
+    activity_last_updated_player_text_xpath = "//div[3]//h6[2]/text()"
     activity_last_updated_player_name_en = "Last updated player"
     activity_last_updated_player_name_pl = "Ostatnio zaaktualizowany gracz"
     activity_last_updated_player_link_xpath = "//a[2]/button"
 
-    activity_last_created_match_text_xpath = "//div[3]//h6[3]"
+    activity_last_created_match_text_xpath = "//div[3]//h6[3]/text()"
     activity_last_created_match_name_en = "Last created match"
     activity_last_created_match_name_pl = "Ostatnio stworzony mecz"
     activity_last_created_match_link_xpath = "//a[3]/button"
 
-    activity_last_updated_match_text_xpath = "//div[3]//h6[4]"
+    activity_last_updated_match_text_xpath = "//div[3]//h6[4]/text()"
     activity_last_updated_match_name_en = "Last updated match"
     activity_last_updated_match_name_pl = "Ostatnio zaaktualizowany mecz"
     activity_last_updated_match_link_xpath = "//a[4]/button"
 
-    activity_last_updated_report_text_xpath = "//div[3]//h6[5]"
+    activity_last_updated_report_text_xpath = "//div[3]//h6[5]/text()"
     activity_last_updated_report_name_en = "Last updated report"
     activity_last_updated_report_name_pl = "Ostatnio zaaktualizowany raport"
     activity_last_updated_report_link_xpath = "//a[5]/button"
@@ -70,11 +70,11 @@ class Dashboard(BasePage):
     menu_main_page_xpath = "//ul[1]/div[1]"
     menu_main_name_page_en = "Main page"
     menu_main_name_page_pl = "Strona główna"
-    menu_main_name_text_xpath = "//ul[1]/div[1]/div[2]/span"
+    menu_main_name_text_xpath = "//ul[1]/div[1]/div[2]/span/text()"
 
     menu_players_page_redirect_url_en = "https://scouts-test.futbolkolektyw.pl/en/players"
     menu_players_page_redirect_url_pl = "https://scouts-test.futbolkolektyw.pl/pl/players"
-    menu_players_name_text_xpath = "//ul[1]/div[2]/div[2]/span"
+    menu_players_name_text_xpath = "//ul[1]/div[2]/div[2]/span/text()"
     menu_player_button_xpath = "//ul[1]/div[2]"
     menu_players_name_en = "Players"
     menu_player_name_pl = "Gracze"
@@ -82,26 +82,26 @@ class Dashboard(BasePage):
     menu_language_xpath = "//ul[2]/div[1]"
     menu_language_name_en = "English"
     menu_language_name_pl = "Polski"
-    menu_language_name_text_xpath = "//ul[2]/div[1]/div[2]/span"
+    menu_language_name_text_xpath = "//ul[2]/div[1]/div[2]/span/text()"
 
     menu_logout_page_redirect_url_en = "https://scouts-test.futbolkolektyw.pl/login"
     menu_logout_page_redirect_url_pl = "https://scouts-test.futbolkolektyw.pl/login"
     menu_logout_xpath = "//ul[2]/div[2]"
     menu_logout_name_en = "Sign out"
     menu_logout_name_pl = "Wyloguj"
-    menu_logout_name_text_xpath = "//ul[2]/div[2]/div[2]/span"
+    menu_logout_name_text_xpath = "//ul[2]/div[2]/div[2]/span/text()"
 
     menu_extend_player_name_xpath = "//ul[2]/div[1]"
 
     menu_extend_matches_xpath = "//ul[2]/div[2]"
     menu_extend_matches_name_en = "Matches"
     menu_extend_matches_name_pl = "Mecze"
-    menu_extend_matches_name_text_xpath = "//ul[2]/div[2]/div[2]/span"
+    menu_extend_matches_name_text_xpath = "//ul[2]/div[2]/div[2]/span/text()"
 
     menu_extend_reports_xpath = "//ul[2]/div[3]"
     menu_extend_reports_name_en = "Reports"
     menu_extend_reports_name_pl = "Raporty"
-    menu_extend_reports_name_text_xpath = "//ul[2]/div[3]/div[2]/span"
+    menu_extend_reports_name_text_xpath = "//ul[2]/div[3]/div[2]/span/text()"
 
     def click_on_menu_main_page_button(self):
         BasePage.wait_for_element_to_be_clickable(self, locator=self.menu_main_page_xpath)

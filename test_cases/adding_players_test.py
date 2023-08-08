@@ -24,8 +24,10 @@ class TestAddPlayer(unittest.TestCase):
         LoginPage.user_log_in(self)
         AddPlayer.path_to_add_player(self)
 
+
+    # THIS ONE FUNKY
     def test_title_of_add_player(self):
-        BaseTestCases.assert_title_of_page_for_testing(self, expected_title=BasePage.get_page_title(self, page_url=AddPlayer.add_player_page_url))
+        BaseTestCases.assert_title_of_page_for_testing(self, expected_title=BasePage.get_page_title(self, page_url=AddPlayer.add_player_page_url_pl))
 
     def test_add_player_restricted_data_only(self):
         AddPlayer.add_player_form_restricted_data_only_fill_up(self)

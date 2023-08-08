@@ -6,6 +6,8 @@ from selenium.webdriver.support import expected_conditions as ec
 
 class EditPlayer(BasePage):
 
+    edit_player_url_en = "https://scouts-test.futbolkolektyw.pl/en/players/6026b48956c79737b3f3c624/edit"
+    edit_player_url_pl = "https://scouts-test.futbolkolektyw.pl/pl/players/6026b48956c79737b3f3c624/edit"
     edit_player_menu_player_name_xpath = "//ul[2]/div[1]/div[2]/span"
     edit_player_upper_title_span_text_xpath = "//div[2]/*/div[1]/*/span"
     edit_player_player_added_popup_container = "//*[@id='__next']/div[2]/div"

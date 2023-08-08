@@ -32,3 +32,6 @@ class BaseTestCases(BasePage):
         """Checking if user gets an incorrect password error upon typing incorrect password"""
         BasePage.wait_for_element_to_be_present(self, locator=LoginPage.incorrect_password_error_xpath)
         self.assertIsNotNone(LoginPage.incorrect_password_error_xpath)
+
+
+
