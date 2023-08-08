@@ -53,7 +53,7 @@ class TestPlayersDashboardPage(unittest.TestCase):
 
     @classmethod
     def tearDown(self):
-        if BasePage.get_page_url(self) != 'https://scouts-test.futbolkolektyw.pl/en/login?redirected=true':
+        if BasePage.get_page_url(self) != LoginPage.login_url_en and BasePage.get_page_url(self) != LoginPage.login_url_pl:
             Dashboard.dashboard_menu_sign_out_button_click(self)
         else:
             pass

@@ -4,7 +4,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from utils.settings import DEFAULT_LOCATOR_TYPE
 
-# XPATHS DONE!
 class BasePage:
 
     def __init__(self, driver: WebDriver):
@@ -19,12 +18,12 @@ class BasePage:
 
     def wait_for_element_to_be_clickable(self, locator, locator_type=DEFAULT_LOCATOR_TYPE):
         """Waiting for element of page to be clickable"""
-        wait = WebDriverWait(self.driver, timeout=45)
+        wait = WebDriverWait(self.driver, timeout=60)
         element = wait.until(EC.element_to_be_clickable((locator_type, locator)))
 
     def wait_for_element_to_be_present(self, locator, locator_type=DEFAULT_LOCATOR_TYPE):
         """Waiting for element of page to be visible for user's eye"""
-        wait = WebDriverWait(self.driver, timeout=45)
+        wait = WebDriverWait(self.driver, timeout=60)
         element_present = wait.until(EC.visibility_of_element_located((locator_type, locator)))
 
     def get_page_title(self, page_url):
@@ -39,7 +38,6 @@ class BasePage:
         """Fetching url address of current webpage user is on"""
         driver = self.driver
         current_url = driver.current_url
-        print(f"Current URL is {current_url}")
         return current_url
 
     def get_element_text(self, locator):
@@ -57,3 +55,29 @@ class BasePage:
             print("Page should be all translated to english")
         elif actual_language_from_url == "pl":
             print("Page should be all translated to polish")
+        return actual_language_from_url
+
+    def assert_title_of_page_for_testing(self, expected_title):
+        """Checking if user is on correct page via its title"""
+        print(f"Asserting {self.driver.title} vs {expected_title}")
+        assert self.driver.title == expected_title
+
+    def assert_element_text(self, driver, text_element_xpath, element_text_expected_text):
+        """Comparing expected text with observed value from web element
+
+            :param driver: webdriver instance
+            :param text_element_xpath: xpath to element with text to be observed
+            :param element_text_expected_text: text what we expecting to be found
+            :return: None
+        """
+        element = driver.find_element(by=By.XPATH, value=text_element_xpath)
+        element_text = element.text
+        print(f"Asserting text of the element is {element_text_expected_text} vs {element_text}... ")
+        assert element_text_expected_text == element_text
+
+    def assert_page_redirected_partly(self, url_to_check):
+        """Checking if user gets redirected from adding player form to editing the same form"""
+        print(f"Checking if /'{url_to_check}'/ is in {BasePage.get_page_url(self)}")
+        self.assertIn(url_to_check, BasePage.get_page_url(self))
+
+

@@ -6,7 +6,6 @@ from pages.base_page import BasePage
 from pages.dashboard_page import Dashboard
 from pages.edit_player_page import EditPlayer
 from pages.login_page import LoginPage
-from test_cases.base_test_cases import BaseTestCases
 from utils.settings import DRIVER_PATH, IMPLICITLY_WAIT
 from selenium.webdriver.chrome.service import Service
 
@@ -27,20 +26,19 @@ class TestAddPlayer(unittest.TestCase):
 
     # THIS ONE FUNKY
     def test_title_of_add_player(self):
-        BaseTestCases.assert_title_of_page_for_testing(self, expected_title=BasePage.get_page_title(self, page_url=AddPlayer.add_player_page_url_pl))
+        BasePage.assert_title_of_page_for_testing(self, expected_title=BasePage.get_page_title(self, page_url=AddPlayer.add_player_page_url_pl))
 
     def test_add_player_restricted_data_only(self):
         AddPlayer.add_player_form_restricted_data_only_fill_up(self)
         BasePage.wait_for_element_to_be_clickable(self, locator=EditPlayer.edit_player_menu_player_name_xpath)
         EditPlayer.wait_for_alert_turnaround(self)
-        BaseTestCases.assert_page_redirected_partly(self, url_to_check=EditPlayer.edit_player_url_for_check(self))
+        BasePage.assert_page_redirected_partly(self, url_to_check=EditPlayer.edit_player_url_for_check(self))
 
     @classmethod
     def tearDown(self):
-        if BasePage.get_page_url(self) != 'https://scouts-test.futbolkolektyw.pl/en':
+        if BasePage.get_page_url(self) != LoginPage.login_url_en and BasePage.get_page_url(self) != LoginPage.login_url_pl:
             Dashboard.dashboard_menu_sign_out_button_click(self)
         else:
             pass
         BasePage.wait_for_element_to_be_clickable(self, locator=LoginPage.sign_in_button_xpath)
-        print("Redirected back to login page - closing test down")
         self.driver.quit()
