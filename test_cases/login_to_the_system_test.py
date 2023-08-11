@@ -17,6 +17,7 @@ class TestUserLoginPage(unittest.TestCase):
         self.driver = webdriver.Chrome(service=self.driver_service)
         self.driver.get('https://scouts-test.futbolkolektyw.pl/en')
         self.driver.implicitly_wait(IMPLICITLY_WAIT)
+        print("\nRunning test...")
 
     def test_user_log_in_incorrect_password(self):
         """Asserts user will not be able to log in with incorrect password and that incorrect password error will be raised"""
@@ -49,10 +50,11 @@ class TestUserLoginPage(unittest.TestCase):
 
     @classmethod
     def tearDown(self):
-        if BasePage.get_page_url(self) != LoginPage.login_url_en and BasePage.get_page_url(self) != LoginPage.login_url_pl:
+        print("Shutting down test")
+        list_of_addresses = [LoginPage.login_url_en, LoginPage.login_url_pl, Dashboard.menu_logout_page_redirect_url,
+                             LoginPage.login_url2_en, LoginPage.login_url2_pl]
+        if BasePage.get_page_url(self) not in list_of_addresses:
             Dashboard.dashboard_menu_sign_out_button_click(self)
         else:
             pass
-        BasePage.wait_for_element_to_be_clickable(self, locator=LoginPage.sign_in_button_xpath)
-        print("Closing down test")
         self.driver.quit()

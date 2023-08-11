@@ -34,7 +34,7 @@ class EditPlayer(BasePage):
     add_player_form_age_xpath = "//input[@name='age']"
     add_player_form_age_text_xpath = ""
     add_player_form_age_name_en = "Age"
-    add_player_form_age_name_pl = "Wiek"
+    add_player_form_age_name_pl = "Data urodzenia"
 
     add_player_form_main_position_xpath = "//input[@name='mainPosition']"
     add_player_form_main_position_text_xpath = ""

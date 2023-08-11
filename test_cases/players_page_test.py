@@ -34,10 +34,12 @@ class TestPlayersDashboardPage(unittest.TestCase):
         self.driver = webdriver.Chrome(service=self.driver_service, options=op)
         self.driver.get('https://scouts-test.futbolkolektyw.pl/en')
         self.driver.implicitly_wait(IMPLICITLY_WAIT)
-        LoginPage.user_log_in(self)
+        print("\nRunning test...")
 
-    def test_download_file_verify(self):
-        """Verifying if file gets downloaded to the desired file and renamed correctly"""
+    def test_download_file_verify_en(self):
+        """Verifying if file gets downloaded to the desired file inside the project and renamed correctly upon
+        login with English language"""
+        LoginPage.login_url_en(self)
         Dashboard.dashboard_menu_players_button_click(self)
         PlayersPage.initiate_download_players_dashboard_file(self)
         file_download_absolute_path = os.path.dirname(__file__)
@@ -51,11 +53,34 @@ class TestPlayersDashboardPage(unittest.TestCase):
         print(f"Checking if {file_download_relative_path} folder contains {file_new_name}...")
         assert os.listdir(file_download_relative_path).__contains__(file_new_name), "File not found"
 
+    def test_download_file_verify_pl(self):
+        """Verifying if file gets downloaded to the desired file inside the project and renamed correctly upon
+        login with Polish language"""
+        LoginPage.login_url_pl(self)
+        Dashboard.dashboard_menu_players_button_click(self)
+        PlayersPage.initiate_download_players_dashboard_file(self)
+        file_download_absolute_path = os.path.dirname(__file__)
+        file_download_relative_path = "file_download_test"
+        file_download_full_path = os.path.join(file_download_absolute_path, file_download_relative_path)
+        file_new_name = f"players_dashboard_download_{random.randint(0, 100)}.csv"
+        old_file_name = f"{file_download_full_path}/tableDownload.csv"
+        time.sleep(5)
+        new_file_full_name = f"{file_download_full_path}/{file_new_name}"
+        os.rename(old_file_name, new_file_full_name)
+        print(f"Checking if {file_download_relative_path} folder contains {file_new_name}...")
+        assert os.listdir(file_download_relative_path).__contains__(file_new_name), "File not found"
+
+    def test_players_page_translation_check(self):
+        """Asserting correct translation of players page"""
+        LoginPage.login_url_pl(self)
+
     @classmethod
     def tearDown(self):
-        if BasePage.get_page_url(self) != LoginPage.login_url_en and BasePage.get_page_url(self) != LoginPage.login_url_pl:
+        print("Shutting down test")
+        list_of_addresses = [LoginPage.login_url_en, LoginPage.login_url_pl, Dashboard.menu_logout_page_redirect_url,
+                             LoginPage.login_url2_en, LoginPage.login_url2_pl]
+        if BasePage.get_page_url(self) not in list_of_addresses:
             Dashboard.dashboard_menu_sign_out_button_click(self)
         else:
             pass
-        BasePage.wait_for_element_to_be_clickable(self, locator=LoginPage.sign_in_button_xpath)
         self.driver.quit()

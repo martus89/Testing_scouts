@@ -1,3 +1,4 @@
+from pages.dashboard_page import Dashboard
 from pages.edit_player_page import EditPlayer
 import time
 from selenium.webdriver.common.by import By
@@ -30,9 +31,10 @@ class LoginPage(BasePage):
     password = "Test-1234"
     incorrect_password = "Pest-123401332ABC"
 
-    login_url_after_logout = "https://scouts-test.futbolkolektyw.pl/login"
     login_url_en = "https://scouts-test.futbolkolektyw.pl/en/login?redirected=true"
     login_url_pl = "https://scouts-test.futbolkolektyw.pl/pl/login?redirected=true"
+    login_url2_en = "https://scouts-test.futbolkolektyw.pl/en/login"
+    login_url2_pl = "https://scouts-test.futbolkolektyw.pl/pl/login"
 
     password_reminder_field_text_xpath = "//div[1]/a"
     password_reminder_text_pl = "Przypomnij hasło"
@@ -69,6 +71,28 @@ class LoginPage(BasePage):
         user_login.login_page_type_in_password(LoginPage.password)
         user_login.login_page_click_on_login_button()
         BasePage.wait_for_element_to_be_clickable(self, locator=EditPlayer.edit_player_menu_player_name_xpath)
+
+    def user_log_in_to_english(self):
+        """User logging in with correct data"""
+        user_login = LoginPage(self.driver)
+        user_login.login_page_type_in_email(LoginPage.email)
+        user_login.login_page_type_in_password(LoginPage.password)
+        LoginPage.dropdown_menu_click_on(self)
+        self.driver.find_element(By.XPATH, '//div[3]/ul/li[2]').click()
+        user_login.login_page_click_on_login_button()
+        BasePage.wait_for_element_to_be_clickable(self, locator=EditPlayer.edit_player_menu_player_name_xpath)
+        Dashboard.dashboard_menu_main_page_button_click(self)
+
+    def user_log_in_to_polish(self):
+        """User logging in with correct data"""
+        user_login = LoginPage(self.driver)
+        user_login.login_page_type_in_email(LoginPage.email)
+        user_login.login_page_type_in_password(LoginPage.password)
+        LoginPage.dropdown_menu_click_on(self)
+        self.driver.find_element(By.XPATH, '//div[3]/ul/li[1]').click()
+        user_login.login_page_click_on_login_button()
+        BasePage.wait_for_element_to_be_clickable(self, locator=EditPlayer.edit_player_menu_player_name_xpath)
+        Dashboard.dashboard_menu_main_page_button_click(self)
 
     def user_log_in_incorrect_password(self):
         """User logging in with incorrect password"""

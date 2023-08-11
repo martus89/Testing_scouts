@@ -1,3 +1,4 @@
+import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions as EC
@@ -79,5 +80,32 @@ class BasePage:
         """Checking if user gets redirected from adding player form to editing the same form"""
         print(f"Checking if /'{url_to_check}'/ is in {BasePage.get_page_url(self)}")
         self.assertIn(url_to_check, BasePage.get_page_url(self))
+
+    def language_detect(self):
+        """Returns language chosen by user"""
+        time.sleep(2)
+        language_options = ["Polski", "English"]
+        global language_dropdown_input_lang_detect_xpath
+        language_dropdown_input_lang_detect_xpath = self.driver.find_element(By.XPATH, "//ul[2]/div[1]/div[2]/span").text
+
+        for index, language_name in enumerate(language_options):
+            if language_name == language_dropdown_input_lang_detect_xpath:
+                print(f"Current language chosen is {language_options[index-1]} and can be changed to {language_dropdown_input_lang_detect_xpath}")
+            else:
+                continue
+        return language_dropdown_input_lang_detect_xpath
+
+    def login_page_language_address_check(self, language_slicing):
+        """Checks language in webpage address and compares to one chosen by user in dropdown"""
+        time.sleep(2)
+        if language_dropdown_input_lang_detect_xpath == "Polski":
+            assert language_slicing == "en"
+            print("Page correctly redirected in English")
+        elif language_dropdown_input_lang_detect_xpath == "English":
+            assert language_slicing == "pl"
+            print("Page correctly redirected in Polish")
+        else:
+            print("There is an issue somewhere with your webpage language choice")
+        time.sleep(2)
 
 

@@ -2,6 +2,8 @@ import unittest
 import os
 from selenium import webdriver
 from pages.base_page import BasePage
+from pages.dashboard_page import Dashboard
+from pages.login_page import LoginPage
 from pages.password_remind_page import RemindPasswordPage
 from utils.settings import DRIVER_PATH, IMPLICITLY_WAIT
 from selenium.webdriver.chrome.service import Service
@@ -16,7 +18,7 @@ class TestAddPlayer(unittest.TestCase):
         self.driver = webdriver.Chrome(service=self.driver_service)
         self.driver.get('https://scouts-test.futbolkolektyw.pl/en')
         self.driver.implicitly_wait(IMPLICITLY_WAIT)
-        print("Running test...")
+        print("\nRunning test...")
 
     def test_password_reminder_redirect(self):
         """Checking if password reminder link redirects user to a webpage with /reminder in URL"""
@@ -39,9 +41,11 @@ class TestAddPlayer(unittest.TestCase):
 
     @classmethod
     def tearDown(self):
-        if BasePage.get_page_url(self) != RemindPasswordPage.password_reminder_page_url_pl and BasePage.get_page_url(self) != RemindPasswordPage.password_reminder_page_url_en:
-            print("Wrong redirect - check your webpage")
+        print("Shutting down test")
+        list_of_addresses = [LoginPage.login_url_en, LoginPage.login_url_pl, Dashboard.menu_logout_page_redirect_url,
+                             LoginPage.login_url2_en, LoginPage.login_url2_pl]
+        if BasePage.get_page_url(self) not in list_of_addresses:
+            Dashboard.dashboard_menu_sign_out_button_click(self)
         else:
             pass
-        print("Closing down test")
         self.driver.quit()

@@ -13,7 +13,7 @@ class PlayersPage(BasePage):
 
     table_age_xpath = "//th[3]//span[1]/div/div[1]/text()"
     table_age_en = "Age"
-    table_age_pl = "Wiek"
+    table_age_pl = "Data urodzenia"
 
     table_main_position_xpath = "//th[4]//span[1]/div/div[1]/text()"
     table_main_position_en = "Main position"
@@ -40,6 +40,7 @@ class PlayersPage(BasePage):
     players_page_url_pl = "https://scouts-test.futbolkolektyw.pl/pl/players"
 
     def players_dashboard_download_click_on_download_button(self):
+        """Method supporting initiate_download_players_dashboard_file(self)"""
         BasePage.wait_for_element_to_be_clickable(self, locator=self.players_file_download_button_xpath)
         return self.click_on_the_element(self.players_file_download_button_xpath)
 
