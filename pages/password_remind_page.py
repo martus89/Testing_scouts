@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 from pages.login_page import LoginPage
 
-
+# !!!!!FIXED WITH NEW FUNCTIONS!!!!
 class RemindPasswordPage(BasePage):
 
     password_reminder_page_url_pl = "https://scouts-test.futbolkolektyw.pl/pl/remind"

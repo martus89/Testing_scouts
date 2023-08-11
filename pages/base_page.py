@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from utils.settings import DEFAULT_LOCATOR_TYPE
 
+
 class BasePage:
 
     def __init__(self, driver: WebDriver):
@@ -22,14 +23,9 @@ class BasePage:
         wait = WebDriverWait(self.driver, timeout=60)
         element = wait.until(EC.element_to_be_clickable((locator_type, locator)))
 
-    def wait_for_element_to_be_present(self, locator, locator_type=DEFAULT_LOCATOR_TYPE):
-        """Waiting for element of page to be visible for user's eye"""
-        wait = WebDriverWait(self.driver, timeout=60)
-        element_present = wait.until(EC.visibility_of_element_located((locator_type, locator)))
-
-    def get_page_title(self, page_url):
+    def get_page_title(self):
         """Fetching page title from url's address of current webpage user is on"""
-        self.driver.get(page_url)
+        self.driver.get(BasePage.get_page_url(self))
         return self.driver.title
 
     def explicit_wait(self):
@@ -43,23 +39,14 @@ class BasePage:
 
     def get_element_text(self, locator):
         """Waiting for element of page to be visible for user's eye"""
-        BasePage.wait_for_element_to_be_present(self, locator=locator)
+        BasePage.wait_for_element_to_be_visible(self, locator_address=locator)
         element = self.driver.find_element(By.XPATH, locator)
         print(f"Element text is {element.text}")
         return element.text
 
-    def check_language_of_webpage(self):
-        """Defines the language of page based on its address"""
-        players_page_url = BasePage.get_page_url(self)
-        actual_language_from_url = players_page_url[38:40]
-        if actual_language_from_url == "en":
-            print("Page should be all translated to english")
-        elif actual_language_from_url == "pl":
-            print("Page should be all translated to polish")
-        return actual_language_from_url
-
     def assert_title_of_page_for_testing(self, expected_title):
         """Checking if user is on correct page via its title"""
+        BasePage.get_page_title(self)
         print(f"Asserting {self.driver.title} vs {expected_title}")
         assert self.driver.title == expected_title
 
@@ -71,17 +58,16 @@ class BasePage:
             :param element_text_expected_text: text what we expecting to be found
             :return: None
         """
-        element = driver.find_element(by=By.XPATH, value=text_element_xpath)
-        element_text = element.text
-        print(f"Asserting text of the element is {element_text_expected_text} vs {element_text}... ")
-        assert element_text_expected_text == element_text
+        element = driver.find_element(by=By.XPATH, value=text_element_xpath).text
+        print(f"Asserting text of the element is {element_text_expected_text} vs {element}... ")
+        assert element_text_expected_text == element
 
-    def assert_page_redirected_partly(self, url_to_check):
-        """Checking if user gets redirected from adding player form to editing the same form"""
-        print(f"Checking if /'{url_to_check}'/ is in {BasePage.get_page_url(self)}")
-        self.assertIn(url_to_check, BasePage.get_page_url(self))
+    def assert_page_redirected_correctly(self, word_to_check):
+        """Checking if user gets redirected to correct subpage base on subpage naming convention"""
+        print(f"Checking if /'{word_to_check}'/ is in URL {BasePage.get_page_url(self)[38:]} to confirm correct redirect")
+        self.assertIn(word_to_check, BasePage.get_page_url(self))
 
-    def language_detect(self):
+    def language_detect_from_dropdown(self):
         """Returns language chosen by user"""
         time.sleep(2)
         language_options = ["Polski", "English"]
@@ -95,17 +81,38 @@ class BasePage:
                 continue
         return language_dropdown_input_lang_detect_xpath
 
-    def login_page_language_address_check(self, language_slicing):
+    def webpage_language_address_check(self):
         """Checks language in webpage address and compares to one chosen by user in dropdown"""
-        time.sleep(2)
-        if language_dropdown_input_lang_detect_xpath == "Polski":
-            assert language_slicing == "en"
-            print("Page correctly redirected in English")
-        elif language_dropdown_input_lang_detect_xpath == "English":
-            assert language_slicing == "pl"
-            print("Page correctly redirected in Polish")
+        language_slicing = BasePage.get_page_url(self)[38:]
+        language_detect_xpath = self.driver.find_element(By.XPATH, "//span[contains(text(), 'English') or contains(text(), 'Polski')]").text
+
+        if language_detect_xpath == "Polski":
+            assert "en" in language_slicing
+            print("Page URL shows language to be English")
+        elif language_detect_xpath == "English":
+            assert "pl" in language_slicing
+            print("Page URL shows language to be Polski")
         else:
             print("There is an issue somewhere with your webpage language choice")
-        time.sleep(2)
 
+    def wait_for_menu_extension_to_appear(self, locator_address, locator_type=By.XPATH):
+        """Assert menu extension appears after submitting player data"""
+        wait = WebDriverWait(self.driver, timeout=70)
+        element_present = wait.until(EC.visibility_of_element_located((locator_type, locator_address)))
 
+        assert element_present
+        if element_present:
+            print("Menu extension is visible as planned - reports tab are visible")
+        else:
+            print("Menu extension not appearing - check what's wrong")
+
+    def wait_for_element_to_be_visible(self, locator_address, locator_type=By.XPATH):
+        """Assert element appears correctly and as planned"""
+        wait = WebDriverWait(self.driver, timeout=70)
+        element_present = wait.until(EC.visibility_of_element_located((locator_type, locator_address)))
+
+        assert element_present
+        if element_present:
+            print("Webpage element is visible as planned")
+        else:
+            print("Webpage element not appearing - check what's wrong")

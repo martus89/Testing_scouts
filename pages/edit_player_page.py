@@ -1,132 +1,242 @@
-from selenium.webdriver.support.wait import WebDriverWait
+import time
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as ec
+from pages.dashboard_page import Dashboard
 
 
+# !!!!!FIXED WITH NEW FUNCTIONS!!!!
 class EditPlayer(BasePage):
 
-    edit_player_url_en = "https://scouts-test.futbolkolektyw.pl/en/players/6026b48956c79737b3f3c624/edit"
-    edit_player_url_pl = "https://scouts-test.futbolkolektyw.pl/pl/players/6026b48956c79737b3f3c624/edit"
-    edit_player_menu_player_name_xpath = "//ul[2]/div[1]/div[2]/span"
-    edit_player_upper_title_span_text_xpath = "//div[2]/*/div[1]/*/span"
+    menu_player_name_xpath = "//ul[1]/div[2]/div[2]/span"
+    edit_player_upper_title_name_text_xpath = "//div[2]/*/div[1]/*/span"
     edit_player_player_added_popup_container = "//*[@id='__next']/div[2]/div"
 
-    test_edit_player_form_name_input = " "
-    test_add_player_form_surname_input = " "
-    test_add_player_form_age_input = "15102024"
-    test_add_player_form_main_position_input = " "
-
-    add_player_form_title_xpath = ""
-    add_player_form_title_en = "Add player"
-    add_player_form_title_pl = "Dodaj gracza"
-
     add_player_form_name_field_xpath = "//input[@name='name']"
-    add_player_form_name_xpath = ""
-    add_player_form_name_en = "Imię"
-    add_player_form_name_pl = "Name"
+    add_player_form_name_xpath = "//form/div[2]//div[2]//label"
+    add_player_form_name_pl = "Imię\u2009*"
+    add_player_form_name_en = "Name\u2009*"
 
     add_player_form_surname_xpath = "//input[@name='surname']"
-    add_player_form_surname_text_xpath = ""
-    add_player_form_surname_name_en = "Surname"
-    add_player_form_surname_name_pl = "Nazwisko"
+    add_player_form_surname_label_xpath = "//form//div[3]//label"
+    add_player_form_surname_name_en = "Surname\u2009*"
+    add_player_form_surname_name_pl = "Nazwisko\u2009*"
+    add_player_form_surname_required_error_xpath = "//div[2]//div[3]/div/p"
 
     add_player_form_age_xpath = "//input[@name='age']"
-    add_player_form_age_text_xpath = ""
-    add_player_form_age_name_en = "Age"
-    add_player_form_age_name_pl = "Data urodzenia"
+    add_player_form_age_label_xpath = "//form//div[7]//label"
+    add_player_form_age_name_en = "Age\u2009*"
+    add_player_form_age_name_pl = "Data urodzenia\u2009*"
+    add_player_form_age_required_error_xpath = "//div[2]//div[7]/div/p"
 
     add_player_form_main_position_xpath = "//input[@name='mainPosition']"
-    add_player_form_main_position_text_xpath = ""
-    add_player_form_main_position_name_en = "Główna pozycja"
-    add_player_form_main_position_name_pl = "Main position"
+    add_player_form_main_position_label_xpath = "//form//div[11]//label"
+    add_player_form_main_position_name_pl = "Główna pozycja\u2009*"
+    add_player_form_main_position_name_en = "Main position\u2009*"
+    add_player_form_main_position_required_error_xpath = "//div[2]/div/div[11]//p"
 
     add_player_submit_button_xpath = "//form/*/button[1]"
-    add_player_submit_button_text_xpath = ""
-    add_player_submit_button_name_en = "Submit"
-    add_player_submit_button_name_pl = "Submit"
+    add_player_submit_button_label_xpath = "//button[@type='submit']/span"
+    add_player_submit_button_name_en = "SUBMIT"
+    add_player_submit_button_name_pl = "SUBMIT"
 
-    add_player_clear_button_xpath = ""
-    add_player_clear_button_text_xpath = ""
-    add_player_clear_button_name_en = "Clear"
-    add_player_clear_button_name_pl = "Clear"
+    add_player_clear_button_xpath = "//div[3]/button[2]"
+    add_player_clear_button_label_xpath = "//div[3]/button[2]/span"
+    add_player_clear_button_name_en = "CLEAR"
+    add_player_clear_button_name_pl = "CLEAR"
 
-    add_player_add_language_button_xpath = ""
-    add_player_language_delete_button_xpath = ""
-    add_player_add_language_button_text_xpath = ""
-    add_player_add_language_button_en = "Add language"
-    add_player_add_language_button_pl = "Dodaj język"
+    add_player_add_language_button_xpath = "//div[15]/button"
+    add_player_language_delete_button_xpath = "//div[15]/div/button"
+    add_player_add_language_button_label_xpath = "//div[15]/button/span"
+    add_player_add_language_button_en = "ADD LANGUAGE"
+    add_player_add_language_button_pl = "DODAJ JĘZYK"
     add_player_add_language_extra_field_en = "Languages"
     add_player_add_language_extra_field_pl = "Języki"
 
-    add_player_yt_link_button_xpath = ""
-    add_player_yt_link_delete_button_xpath = ""
-    add_player_yt_link_button_text_xpath = ""
-    add_player_yt_link_button_en = "Add link to Youtube"
-    add_player_yt_link_button_pl = "Dodaj link z Youtube"
+    add_player_yt_link_button_xpath = "//div[19]/button"
+    add_player_yt_link_delete_button_xpath = "//div[19]/div/button"
+    add_player_yt_link_button_label_xpath = "//div[19]/button/span"
+    add_player_yt_link_button_en = "ADD LINK TO YOUTUBE"
+    add_player_yt_link_button_pl = "DODAJ LINK Z YOUTUBE"
     add_player_yt_link_extra_field_en = "YouTube"
     add_player_yt_link_extra_field_pl = "Link do YouTube"
 
-    form_optional_email_xpath = ""
+    form_optional_email_xpath = "//input[@name='email']"
+    form_optional_email_label_xpath = "//div[2]/div/div[1]//div/label"
     form_optional_email_en = "E-mail"
-    form_optional_email_pl = ""
+    form_optional_email_pl = "E-mail"
 
-    form_optional_phone_xpath = ""
+    form_optional_phone_xpath = "//input[@name='phone']"
+    form_optional_phone_label_xpath = "//div[4]//label"
     form_optional_phone_en = "Phone"
-    form_optional_phone_pl = ""
+    form_optional_phone_pl = "Telefon"
 
-    form_optional_weight_xpath = ""
+    form_optional_weight_xpath = "//input[@name='weight']"
+    form_optional_weight_label_xpath = "//div[5]//label"
     form_optional_weight_en = "Weight"
-    form_optional_weight_pl = ""
+    form_optional_weight_pl = "Waga"
 
-    form_optional_height_xpath = ""
+    form_optional_height_xpath = "//input[@name='height']"
+    form_optional_height_label_xpath = "//div[6]//label"
     form_optional_height_en = "Height (cm)"
-    form_optional_height_pl = ""
+    form_optional_height_pl = "Wzrost (cm)"
 
-    form_optional_leg_xpath = ""
+    form_optional_leg_xpath = "//input[@name='leg']"
+    form_optional_leg_label_xpath = "//div[8]//label"
     form_optional_leg_en = "Leg"
     form_optional_leg_pl = "Dominująca noga"
 
-    form_optional_club_xpath = ""
+    form_optional_club_xpath = "//input[@name='club']"
+    form_optional_club_label_xpath = "//div[9]//label"
     form_optional_club_en = "Club"
     form_optional_club_pl = "Klub"
 
-    form_optional_level_xpath = ""
+    form_optional_level_xpath = "//input[@name='level']"
+    form_optional_level_label_xpath = "//div[10]//label"
     form_optional_level_en = "Level"
     form_optional_level_pl = "Poziom rozgrywek"
 
-    form_optional_2pos_xpath = ""
+    form_optional_2pos_xpath = "//input[@name='secondPosition']"
+    form_optional_2pos_label_xpath = "//div[12]//label"
     form_optional_2pos_en = "Second position"
-    form_optional_2pos_pl = "Pozycja alternatywna"
+    form_optional_2pos_pl = "Pozycja alternatywa"
 
-    form_optional_district_xpath = ""
+    form_optional_district_xpath = "//input[@name='district']"
+    form_optional_district_label_xpath = "//div[13]//label"
     form_optional_district_en = "District"
     form_optional_district_pl = "Województwo"
 
-    form_optional_achvm_xpath = ""
+    form_optional_achvm_xpath = "//input[@name='achievements']"
+    form_optional_achvm_label_xpath = "//div[14]//label"
     form_optional_achvm_en = "Achievements"
     form_optional_achvm_pl = "Osiągnięcia"
 
-    form_optional_lnp_xpath = ""
+    form_optional_lnp_xpath = "//input[@name='webLaczy']"
+    form_optional_lnp_label_xpath = "//div[16]//label"
     form_optional_lnp_en = "Łączy nas piłka"
     form_optional_lnp_pl = "Łączy nas piłka"
 
-    form_optional_90m_xpath = ""
+    form_optional_90m_xpath = "//input[@name='web90']"
+    form_optional_90m_label_xpath = "//div[17]//label"
     form_optional_90m_en = "90 minut"
     form_optional_90m_pl = "90 minut"
 
-    form_optional_fb_xpath = ""
+    form_optional_fb_xpath = "//input[@name='webFB']"
+    form_optional_fb_label_xpath = "//div[18]//label"
     form_optional_fb_en = "Facebook"
     form_optional_fb_pl = "Profil facebook"
 
-    def edit_player_url_for_check(self):
-        driver = self.driver
-        current_url = driver.current_url
-        current_url_slice = current_url.split("/")[5]
-        print(current_url_slice)
-        return current_url_slice
+    menu_match_xpath = "//ul[2]/div[2]/div[2]/span"
+    menu_match_label_en = "Matches"
+    menu_match_label_pl = "Mecze"
 
-    def wait_for_alert_turnaround(self, locator_type=By.XPATH):
-        """Waiting until alert from current XPath disappears"""
-        wait = WebDriverWait(self.driver, timeout=60)
-        element_present = wait.until_not(ec.visibility_of_element_located((locator_type, EditPlayer.edit_player_player_added_popup_container)))
+    menu_extension_check_reports_visible_xpath = "//div[1]//div//ul[2]/div[3]"
+
+    def create_translation_dictionary(self):
+        """Creates a translation dictionary"""
+        time.sleep(2)
+        add_player_form_name_label_xpath = self.driver.find_element(By.XPATH, "//form/div[2]//div[2]/div/label").text
+        add_player_form_surname_label_xpath = self.driver.find_element(By.XPATH, "//form/div[2]//div[3]/div/label").text
+        add_player_form_age_label_xpath = self.driver.find_element(By.XPATH, "//form/div[2]//div[7]/div/label").text
+        add_player_form_main_position_label_xpath = self.driver.find_element(By.XPATH, "//form/div[2]//div[11]/div/label").text
+        add_player_submit_button_label_xpath = self.driver.find_element(By.XPATH, "//button[@type='submit']/span").text
+        add_player_clear_button_label_xpath = self.driver.find_element(By.XPATH, "//div[3]/button[2]/span").text
+        add_player_add_language_button_label_xpath = self.driver.find_element(By.XPATH, "//div[15]/button/span").text
+        add_player_yt_link_button_label_xpath = self.driver.find_element(By.XPATH, "//div[19]/button/span").text
+        form_optional_email_label_xpath = self.driver.find_element(By.XPATH, "//div[2]/div/div[1]//div/label").text
+        form_optional_phone_label_xpath = self.driver.find_element(By.XPATH, "//div[4]//label").text
+        form_optional_weight_label_xpath = self.driver.find_element(By.XPATH, "//div[5]//label").text
+        form_optional_height_label_xpath = self.driver.find_element(By.XPATH, "//div[6]//label").text
+        form_optional_leg_label_xpath = self.driver.find_element(By.XPATH, "//div[8]//label").text
+        form_optional_club_label_xpath = self.driver.find_element(By.XPATH, "//div[9]//label").text
+        form_optional_level_label_xpath = self.driver.find_element(By.XPATH, "//div[10]//label").text
+        form_optional_2pos_label_xpath = self.driver.find_element(By.XPATH, "//div[12]//label").text
+        form_optional_district_label_xpath = self.driver.find_element(By.XPATH, "//div[13]//label").text
+        form_optional_achvm_label_xpath = self.driver.find_element(By.XPATH, "//div[14]//label").text
+        form_optional_lnp_label_xpath = self.driver.find_element(By.XPATH, "//div[16]//label").text
+        form_optional_90m_label_xpath = self.driver.find_element(By.XPATH, "//div[17]//label").text
+        form_optional_fb_label_xpath = self.driver.find_element(By.XPATH, "//div[18]//label").text
+        menu_main_name_text_xpath = self.driver.find_element(By.XPATH, "//ul[1]/div[1]/div[2]/span").text
+        menu_language_xpath = self.driver.find_element(By.XPATH, "//ul[3]/div[1]/div[2]/span").text
+        menu_logout_xpath = self.driver.find_element(By.XPATH, "//ul[3]/div[2]/div[2]/span").text
+        menu_player_button_xpath = self.driver.find_element(By.XPATH, "//ul[1]/div[2]").text
+        menu_match_xpath = self.driver.find_element(By.XPATH, "//ul[2]/div[2]/div[2]/span").text
+
+        global edit_player_upper_title_name_text_xpath
+        edit_player_upper_title_name_text_xpath = self.driver.find_element(By.XPATH, "//div[2]/*/div[1]/*/span").text
+
+        global players_name_side_menu
+        players_name_side_menu = self.driver.find_element(By.XPATH, "//div[1]//ul[2]/div[1]/div[2]/span").text
+
+        """Xpath for language detection - it will search for language tab and show 'Polski' option if webpage is 
+        translated to English or 'English' option if webpage is translated to Polish"""
+
+        global language_detect_xpath
+        language_detect_xpath = self.driver.find_element(By.XPATH, "//span[contains(text(), 'English') or contains(text(), 'Polski')]").text
+
+        global language_page_version_pl
+        language_page_version_pl = {
+            add_player_form_name_label_xpath: EditPlayer.add_player_form_name_pl,
+            add_player_form_surname_label_xpath: EditPlayer.add_player_form_surname_name_pl, add_player_form_age_label_xpath: EditPlayer.add_player_form_age_name_pl,
+            add_player_form_main_position_label_xpath: EditPlayer.add_player_form_main_position_name_pl, add_player_submit_button_label_xpath: EditPlayer.add_player_submit_button_name_pl,
+            add_player_clear_button_label_xpath: EditPlayer.add_player_clear_button_name_pl, add_player_add_language_button_label_xpath: EditPlayer.add_player_add_language_button_pl,
+            add_player_yt_link_button_label_xpath: EditPlayer.add_player_yt_link_button_pl, form_optional_email_label_xpath: EditPlayer.form_optional_email_pl,
+            form_optional_phone_label_xpath: EditPlayer.form_optional_phone_pl, form_optional_weight_label_xpath: EditPlayer.form_optional_weight_pl,
+            form_optional_height_label_xpath: EditPlayer.form_optional_height_pl, form_optional_leg_label_xpath: EditPlayer.form_optional_leg_pl,
+            form_optional_club_label_xpath: EditPlayer.form_optional_club_pl, form_optional_level_label_xpath: EditPlayer.form_optional_level_pl,
+            form_optional_2pos_label_xpath: EditPlayer.form_optional_2pos_pl, form_optional_district_label_xpath: EditPlayer.form_optional_district_pl,
+            form_optional_achvm_label_xpath: EditPlayer.form_optional_achvm_pl, form_optional_lnp_label_xpath: EditPlayer.form_optional_lnp_pl,
+            form_optional_90m_label_xpath: EditPlayer.form_optional_90m_pl, form_optional_fb_label_xpath: EditPlayer.form_optional_fb_pl,
+            menu_main_name_text_xpath: Dashboard.menu_main_name_page_pl, menu_language_xpath: Dashboard.menu_language_name_en,
+            menu_logout_xpath: Dashboard.menu_logout_name_pl, menu_player_button_xpath: Dashboard.menu_players_name_pl,
+            menu_match_xpath: EditPlayer.menu_match_label_pl
+        }
+
+        global language_page_version_en
+        language_page_version_en = {
+            add_player_form_name_label_xpath: EditPlayer.add_player_form_name_en,
+            add_player_form_surname_label_xpath: EditPlayer.add_player_form_surname_name_en, add_player_form_age_label_xpath: EditPlayer.add_player_form_age_name_en,
+            add_player_form_main_position_label_xpath: EditPlayer.add_player_form_main_position_name_en, add_player_submit_button_label_xpath: EditPlayer.add_player_submit_button_name_en,
+            add_player_clear_button_label_xpath: EditPlayer.add_player_clear_button_name_en, add_player_add_language_button_label_xpath: EditPlayer.add_player_add_language_button_en,
+            add_player_yt_link_button_label_xpath: EditPlayer.add_player_yt_link_button_en, form_optional_email_label_xpath: EditPlayer.form_optional_email_en,
+            form_optional_phone_label_xpath: EditPlayer.form_optional_phone_en, form_optional_weight_label_xpath: EditPlayer.form_optional_weight_en,
+            form_optional_height_label_xpath: EditPlayer.form_optional_height_en, form_optional_leg_label_xpath: EditPlayer.form_optional_leg_en,
+            form_optional_club_label_xpath: EditPlayer.form_optional_club_en, form_optional_level_label_xpath: EditPlayer.form_optional_level_en,
+            form_optional_2pos_label_xpath: EditPlayer.form_optional_2pos_en, form_optional_district_label_xpath: EditPlayer.form_optional_district_en,
+            form_optional_achvm_label_xpath: EditPlayer.form_optional_achvm_en, form_optional_lnp_label_xpath: EditPlayer.form_optional_lnp_en,
+            form_optional_90m_label_xpath: EditPlayer.form_optional_90m_en, form_optional_fb_label_xpath: EditPlayer.form_optional_fb_en,
+            menu_main_name_text_xpath: Dashboard.menu_main_name_page_en, menu_language_xpath: Dashboard.menu_language_name_pl,
+            menu_logout_xpath: Dashboard.menu_logout_name_en, menu_player_button_xpath: Dashboard.menu_players_name_en,
+            menu_match_xpath: EditPlayer.menu_match_label_en
+        }
+
+    def webpage_dictionary_language_check(self):
+        """Based on language chosen by user, checks if page elements display correct language"""
+        time.sleep(2)
+        language_options = ["Polski", "English"]
+        page_dictionary = {}
+
+        for index, language_name in enumerate(language_options):
+            if language_name == language_detect_xpath:
+                print(f"Current language chosen is {language_options[index-1]} and can be changed to {language_detect_xpath}")
+            else:
+                continue
+
+        if language_detect_xpath == "Polski":
+            page_dictionary = language_page_version_en
+            print("Page dictionary is in English")
+        elif language_detect_xpath == "English":
+            page_dictionary = language_page_version_pl
+            print("Page dictionary is in Polish")
+        else:
+            print("Language not detected - check your webpage")
+
+        for field_name in page_dictionary:
+            assert field_name == page_dictionary[field_name]
+        print("Dictionary checked - everything seems in order")
+
+    def check_players_name(self):
+        """Asserts player's name matches in side menu and upper form both"""
+
+        global players_name_side_menu
+        print(f"Checking if {players_name_side_menu} in {edit_player_upper_title_name_text_xpath}")
+        self.assertIn(players_name_side_menu, edit_player_upper_title_name_text_xpath)

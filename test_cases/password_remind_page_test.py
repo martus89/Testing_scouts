@@ -8,7 +8,7 @@ from pages.password_remind_page import RemindPasswordPage
 from utils.settings import DRIVER_PATH, IMPLICITLY_WAIT
 from selenium.webdriver.chrome.service import Service
 
-# DONE!
+# !!!!!FIXED WITH NEW FUNCTIONS!!!!
 class TestAddPlayer(unittest.TestCase):
 
     @classmethod
@@ -43,7 +43,8 @@ class TestAddPlayer(unittest.TestCase):
     def tearDown(self):
         print("Shutting down test")
         list_of_addresses = [LoginPage.login_url_en, LoginPage.login_url_pl, Dashboard.menu_logout_page_redirect_url,
-                             LoginPage.login_url2_en, LoginPage.login_url2_pl]
+                             LoginPage.login_url2_en, LoginPage.login_url2_pl,
+                             RemindPasswordPage.password_reminder_page_url_pl, RemindPasswordPage.password_reminder_page_url_en]
         if BasePage.get_page_url(self) not in list_of_addresses:
             Dashboard.dashboard_menu_sign_out_button_click(self)
         else:

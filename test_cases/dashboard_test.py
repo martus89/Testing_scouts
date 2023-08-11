@@ -8,7 +8,7 @@ from pages.login_page import LoginPage
 from utils.settings import DRIVER_PATH, IMPLICITLY_WAIT
 from selenium.webdriver.chrome.service import Service
 
-"""DONE"""
+# !!!!!FIXED WITH NEW FUNCTIONS!!!!
 class TestDashboardPage(unittest.TestCase):
 
     @classmethod
@@ -24,7 +24,7 @@ class TestDashboardPage(unittest.TestCase):
         """Asserts user gets successfully redirected to sign in upon clicking on sign out button from dashboard"""
         LoginPage.user_log_in(self)
         Dashboard.dashboard_menu_sign_out_button_click(self)
-        BasePage.assert_title_of_page_for_testing(self, expected_title=BasePage.get_page_title(self, page_url=Dashboard.menu_logout_page_redirect_url))
+        BasePage.assert_title_of_page_for_testing(self, expected_title=BasePage.get_page_title(self))
 
     def test_open_last_created_match(self):
         """Asserts element correctness and therefore correct redirect on last created match subpage"""
@@ -38,35 +38,31 @@ class TestDashboardPage(unittest.TestCase):
         """Asserts webpage address and language translation upon login with Polish chosen as optional language"""
         LoginPage.user_log_in_to_polish(self)
         Dashboard.dashboard_menu_main_page_button_click(self)
-        BasePage.language_detect(self)
         Dashboard.create_translation_dictionary(self)
-        Dashboard.address_dictionary_translation_check(self)
-        BasePage.login_page_language_address_check(self, language_slicing=BasePage.get_page_url(self)[-2:])
+        Dashboard.webpage_dictionary_language_check(self)
+        BasePage.webpage_language_address_check(self)
 
     def test_login_language_en(self):
         """Asserts webpage address and language translation upon login with English chosen as optional language"""
         LoginPage.user_log_in_to_english(self)
         Dashboard.dashboard_menu_main_page_button_click(self)
-        BasePage.language_detect(self)
         Dashboard.create_translation_dictionary(self)
-        Dashboard.address_dictionary_translation_check(self)
-        BasePage.login_page_language_address_check(self, language_slicing=BasePage.get_page_url(self)[-2:])
+        Dashboard.webpage_dictionary_language_check(self)
+        BasePage.webpage_language_address_check(self)
 
     def test_dashboard_language_change(self):
         """Asserts webpage address and language translation after using language change button from dashboard menu"""
         LoginPage.user_log_in_to_polish(self)
         Dashboard.dashboard_menu_language_change_button_click(self)
-        print("Changing the language")
-        BasePage.language_detect(self)
+        print("Language changed manually via menu option")
         Dashboard.create_translation_dictionary(self)
-        Dashboard.address_dictionary_translation_check(self)
-        BasePage.login_page_language_address_check(self, language_slicing=BasePage.get_page_url(self)[-2:])
+        Dashboard.webpage_dictionary_language_check(self)
+        BasePage.webpage_language_address_check(self)
         Dashboard.dashboard_menu_language_change_button_click(self)
-        print("Changing the language")
-        BasePage.language_detect(self)
+        print("Language changed manually via menu option")
         Dashboard.create_translation_dictionary(self)
-        Dashboard.address_dictionary_translation_check(self)
-        BasePage.login_page_language_address_check(self, language_slicing=BasePage.get_page_url(self)[-2:])
+        Dashboard.webpage_dictionary_language_check(self)
+        BasePage.webpage_language_address_check(self)
 
     @classmethod
     def tearDown(self):
@@ -77,4 +73,3 @@ class TestDashboardPage(unittest.TestCase):
         else:
             pass
         self.driver.quit()
-

@@ -4,7 +4,7 @@ import time
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 
-
+# !!!!!FIXED WITH NEW FUNCTIONS!!!!
 class LoginPage(BasePage):
     login_field_xpath = "//input[@id='login']"
     password_field_xpath = "//input[@id='password']"
@@ -70,7 +70,7 @@ class LoginPage(BasePage):
         user_login.login_page_type_in_email(LoginPage.email)
         user_login.login_page_type_in_password(LoginPage.password)
         user_login.login_page_click_on_login_button()
-        BasePage.wait_for_element_to_be_clickable(self, locator=EditPlayer.edit_player_menu_player_name_xpath)
+        BasePage.wait_for_element_to_be_clickable(self, locator=EditPlayer.menu_player_name_xpath)
 
     def user_log_in_to_english(self):
         """User logging in with correct data"""
@@ -80,7 +80,7 @@ class LoginPage(BasePage):
         LoginPage.dropdown_menu_click_on(self)
         self.driver.find_element(By.XPATH, '//div[3]/ul/li[2]').click()
         user_login.login_page_click_on_login_button()
-        BasePage.wait_for_element_to_be_clickable(self, locator=EditPlayer.edit_player_menu_player_name_xpath)
+        BasePage.wait_for_element_to_be_clickable(self, locator=EditPlayer.menu_player_name_xpath)
         Dashboard.dashboard_menu_main_page_button_click(self)
 
     def user_log_in_to_polish(self):
@@ -91,7 +91,7 @@ class LoginPage(BasePage):
         LoginPage.dropdown_menu_click_on(self)
         self.driver.find_element(By.XPATH, '//div[3]/ul/li[1]').click()
         user_login.login_page_click_on_login_button()
-        BasePage.wait_for_element_to_be_clickable(self, locator=EditPlayer.edit_player_menu_player_name_xpath)
+        BasePage.wait_for_element_to_be_clickable(self, locator=EditPlayer.menu_player_name_xpath)
         Dashboard.dashboard_menu_main_page_button_click(self)
 
     def user_log_in_incorrect_password(self):
@@ -103,7 +103,7 @@ class LoginPage(BasePage):
 
     def assert_user_incorrect_login_error_presence(self):
         """Checking if user gets an incorrect password error upon typing incorrect password"""
-        BasePage.wait_for_element_to_be_present(self, locator=LoginPage.incorrect_password_error_xpath)
+        BasePage.wait_for_element_to_be_visible(self, locator_address=LoginPage.incorrect_password_error_xpath)
         self.assertIsNotNone(LoginPage.incorrect_password_error_xpath)
 
     def dropdown_menu_click_on_dropdown(self):
@@ -150,26 +150,24 @@ class LoginPage(BasePage):
 
         global language_page_version_en
         language_page_version_en = {panel_main_name_field_text_xpath: LoginPage.panel_main_name_text_en,
-                                        password_reminder_field_text_xpath: LoginPage.password_reminder_text_en,
-                                        sign_in_button_text_xpath: LoginPage.sign_in_button_text_en,
-                                        password_label_xpath: LoginPage.password_text_en}
+                                    password_reminder_field_text_xpath: LoginPage.password_reminder_text_en,
+                                    sign_in_button_text_xpath: LoginPage.sign_in_button_text_en,
+                                    password_label_xpath: LoginPage.password_text_en}
 
     def translation_check(self):
         """Based on language chosen in dropdown by user, checks if page elements have correct language"""
         LoginPage.create_translation_dictionary(self)
         if LoginPage.language_dropdown_input_lang_detect_xpath_return(self) == "Polski":
             page_dictionary = language_page_version_pl
-            print(page_dictionary)
         elif LoginPage.language_dropdown_input_lang_detect_xpath_return(self) == "English":
             page_dictionary = language_page_version_en
-            print(page_dictionary)
         else:
             print("Language not detected - check your webpage")
 
         for field_name in page_dictionary:
             assert field_name == page_dictionary[field_name]
 
-    def login_page_language_address_check(self):
+    def webpage_language_address_check(self):
         """Checks language in webpage address and compares to one chosen by user in dropdown"""
         my_page_url = BasePage.get_page_url(self)[38:40]
         if LoginPage.language_dropdown_input_lang_detect_xpath_return(self) == "Polski":

@@ -1,10 +1,8 @@
 from pages.base_page import BasePage
 
-# XPATHS DONE
+
 class EditMatch(BasePage):
 
-    edit_match_url_en = "https://scouts-test.futbolkolektyw.pl/en/players/6026b48956c79737b3f3c624/matches/635e8b50f7933858f18c2203/edit"
-    edit_match_url_pl = "https://scouts-test.futbolkolektyw.pl/pl/players/6026b48956c79737b3f3c624/matches/635e8b50f7933858f18c2203/edit"
     edit_match_upper_heading_text = "//form/div[1]//span"
 
     required_my_team_input_xpath = "//input[@name='myTeam']"

@@ -2,9 +2,8 @@ import time
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 from pages.dashboard_page import Dashboard
-from pages.edit_player_page import EditPlayer
 
-# XPATHS DONE!
+# !!!!!FIXED WITH NEW FUNCTIONS!!!!
 
 class AddPlayer(BasePage):
     add_player_page_url_en = "https://scouts-test.futbolkolektyw.pl/en/players/add"
@@ -188,10 +187,13 @@ class AddPlayer(BasePage):
         menu_main_name_text_xpath = self.driver.find_element(By.XPATH, "//ul[1]/div[1]/div[2]/span").text
         menu_language_xpath = self.driver.find_element(By.XPATH, "//ul[2]/div[1]").text
         menu_logout_xpath = self.driver.find_element(By.XPATH, "//ul[2]/div[2]").text
+        menu_player_button_xpath = self.driver.find_element(By.XPATH, "//ul[1]/div[2]").text
 
-        global language_input_lang_detect_xpath
-        language_input_lang_detect_xpath = self.driver.find_element(By.XPATH, "//ul[2]/div[1]/div[2]/span").text
 
+        """Xpath for language detection - it will search for language tab and show 'Polski' option if webpage is 
+        translated to English or 'English' option if webpage is translated to Polish"""
+        global language_detect_xpath
+        language_detect_xpath = self.driver.find_element(By.XPATH, "//span[contains(text(), 'English') or contains(text(), 'Polski')]").text
 
         global language_page_version_pl
         language_page_version_pl = {
@@ -207,7 +209,7 @@ class AddPlayer(BasePage):
             form_optional_achvm_label_xpath: AddPlayer.form_optional_achvm_pl, form_optional_lnp_label_xpath: AddPlayer.form_optional_lnp_pl,
             form_optional_90m_label_xpath: AddPlayer.form_optional_90m_pl, form_optional_fb_label_xpath: AddPlayer.form_optional_fb_pl,
             menu_main_name_text_xpath: Dashboard.menu_main_name_page_pl, menu_language_xpath: Dashboard.menu_language_name_en,
-            menu_logout_xpath: Dashboard.menu_logout_name_pl
+            menu_logout_xpath: Dashboard.menu_logout_name_pl, menu_player_button_xpath: Dashboard.menu_players_name_pl
         }
 
         global language_page_version_en
@@ -224,7 +226,7 @@ class AddPlayer(BasePage):
             form_optional_achvm_label_xpath: AddPlayer.form_optional_achvm_en, form_optional_lnp_label_xpath: AddPlayer.form_optional_lnp_en,
             form_optional_90m_label_xpath: AddPlayer.form_optional_90m_en, form_optional_fb_label_xpath: AddPlayer.form_optional_fb_en,
             menu_main_name_text_xpath: Dashboard.menu_main_name_page_en, menu_language_xpath: Dashboard.menu_language_name_pl,
-            menu_logout_xpath: Dashboard.menu_logout_name_en,
+            menu_logout_xpath: Dashboard.menu_logout_name_en, menu_player_button_xpath: Dashboard.menu_players_name_en
         }
 
         AddPlayer.check_for_language_extension(self)
@@ -241,17 +243,14 @@ class AddPlayer(BasePage):
             else:
                 menu_extend_matches_name_text_xpath = self.driver.find_element(By.XPATH, "//ul[2]/div[2]/div[2]/span").text
                 menu_extend_reports_name_text_xpath = self.driver.find_element(By.XPATH, "//ul[2]/div[3]/div[2]/span").text
-                menu_player_button_xpath = self.driver.find_element(By.XPATH, "//ul[1]/div[2]").text
 
                 global language_page_extended_version_en
                 language_page_extended_version_en = {
-                    menu_player_button_xpath: Dashboard.menu_players_name_en,
                     menu_extend_matches_name_text_xpath: Dashboard.menu_extend_matches_name_en,
                     menu_extend_reports_name_text_xpath: Dashboard.menu_extend_reports_name_en}
 
                 global language_page_extended_version_pl
                 language_page_extended_version_pl = {
-                    menu_player_button_xpath: Dashboard.menu_players_name_pl,
                     menu_extend_matches_name_text_xpath: Dashboard.menu_extend_matches_name_pl,
                     menu_extend_reports_name_text_xpath: Dashboard.menu_extend_reports_name_pl}
 
@@ -261,12 +260,12 @@ class AddPlayer(BasePage):
     def address_dictionary_translation_check(self):
         """Based on language chosen in dropdown by user, checks if page elements have correct language"""
         time.sleep(2)
-        if language_input_lang_detect_xpath == "Polski":
+        if language_detect_xpath == "Polski":
             page_dictionary = language_page_version_en
-        elif language_input_lang_detect_xpath == "English":
+        elif language_detect_xpath == "English":
             page_dictionary = language_page_version_pl
         else:
             print("Language not detected - check your webpage")
         for field_name in page_dictionary:
-            print(field_name, page_dictionary)
             assert field_name == page_dictionary[field_name]
+        print("Dictionary checked - everything seems in order")

@@ -1,6 +1,5 @@
 from pages.base_page import BasePage
 
-# XPATHS DONE!
 class MatchesListOfPlayer(BasePage):
 
     all_matches_of_player_example_url_en = "https://scouts-test.futbolkolektyw.pl/en/players/6026d92156c79737b3f3c62a/matches"
