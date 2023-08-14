@@ -10,7 +10,6 @@ from pages.login_page import LoginPage
 from utils.settings import DRIVER_PATH, IMPLICITLY_WAIT
 from selenium.webdriver.chrome.service import Service
 
-# !!!!!FIXED WITH NEW FUNCTIONS!!!!
 
 class TestAddPlayer(unittest.TestCase):
 
@@ -25,6 +24,7 @@ class TestAddPlayer(unittest.TestCase):
 
     def test_translation_add_player_en(self):
         """Asserts language translation of webpage upon choice of English at login"""
+
         LoginPage.user_log_in_to_english(self)
         AddPlayer.path_to_add_player(self)
         BasePage.language_detect_from_dropdown(self)
@@ -36,6 +36,7 @@ class TestAddPlayer(unittest.TestCase):
 
     def test_translation_add_player_pl(self):
         """Asserts language translation of webpage upon choice of Polish at login"""
+
         LoginPage.user_log_in_to_polish(self)
         AddPlayer.path_to_add_player(self)
         BasePage.language_detect_from_dropdown(self)

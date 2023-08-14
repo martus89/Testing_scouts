@@ -11,8 +11,7 @@ import os
 import time
 
 
-# !!!!!FIXED WITH NEW FUNCTIONS!!!!
-class TestPlayersDashboardPage(unittest.TestCase):
+class TestEditPlayerFromTable(unittest.TestCase):
     @classmethod
     def setUp(self):
         os.chmod(DRIVER_PATH, 755)
@@ -24,6 +23,7 @@ class TestPlayersDashboardPage(unittest.TestCase):
 
     def test_edit_first_player_from_table_en(self):
         """Checks translation of player's edit page and webpage redirect upon login in English"""
+
         LoginPage.user_log_in_to_english(self)
         Dashboard.dashboard_menu_players_button_click(self)
         PlayersPage.edit_first_player_from_table_xpath_click(self)
@@ -38,6 +38,7 @@ class TestPlayersDashboardPage(unittest.TestCase):
     def test_edit_first_player_from_table_lang_switch(self):
         """Checks translation with manual language switch of player's edit page and webpage redirect upon login
         in Polish"""
+
         LoginPage.user_log_in_to_polish(self)
         Dashboard.dashboard_menu_players_button_click(self)
         PlayersPage.edit_first_player_from_table_xpath_click(self)

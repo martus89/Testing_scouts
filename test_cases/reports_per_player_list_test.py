@@ -9,9 +9,8 @@ from selenium import webdriver
 import os
 import time
 
-# !!!!!FIXED WITH NEW FUNCTIONS!!!!
 
-class TestPlayersDashboardPage(unittest.TestCase):
+class TestReportsOfPlayerPage(unittest.TestCase):
     @classmethod
     def setUp(self):
         os.chmod(DRIVER_PATH, 755)
@@ -23,9 +22,10 @@ class TestPlayersDashboardPage(unittest.TestCase):
 
     def test_path_to_reports_per_player_en(self):
         """Checks webpage translation upon English language choice at login"""
+
         LoginPage.user_log_in_to_english(self)
         ReportsListOfPlayer.path_to_reports_of_player(self)
-        time.sleep(2)
+        time.sleep(3)
         BasePage.wait_for_menu_extension_to_appear(self, locator_address=Dashboard.menu_extend_reports_name_text_xpath)
         ReportsListOfPlayer.create_translation_dictionary(self)
         ReportsListOfPlayer.webpage_dictionary_language_check(self)
@@ -34,6 +34,7 @@ class TestPlayersDashboardPage(unittest.TestCase):
 
     def test_path_to_reports_per_player_pl(self):
         """Checks webpage translation upon Polish language choice at login"""
+
         LoginPage.user_log_in_to_polish(self)
         ReportsListOfPlayer.path_to_reports_of_player(self)
         time.sleep(3)
@@ -45,11 +46,13 @@ class TestPlayersDashboardPage(unittest.TestCase):
 
     def test_reports_per_player_language_switch(self):
         """Checks webpage translation using language switch from menu"""
+
         LoginPage.user_log_in_to_english(self)
         ReportsListOfPlayer.path_to_reports_of_player(self)
+        time.sleep(3)
         Dashboard.dashboard_menu_language_change_button_click(self)
         print("Language changed manually via menu option")
-        time.sleep(2)
+        time.sleep(3)
         BasePage.wait_for_menu_extension_to_appear(self, locator_address=Dashboard.menu_extend_reports_name_text_xpath)
         ReportsListOfPlayer.create_translation_dictionary(self)
         ReportsListOfPlayer.webpage_dictionary_language_check(self)
@@ -58,11 +61,14 @@ class TestPlayersDashboardPage(unittest.TestCase):
 
     def test_reports_per_player_edit_report(self):
         """Checks user got redirected to report edit page upon choosing to edit a report from first row"""
+
         LoginPage.user_log_in_to_english(self)
         ReportsListOfPlayer.path_to_reports_of_player(self)
+        time.sleep(3)
         ReportsListOfPlayer.reports_first_row_edit_button_click(self)
         BasePage.wait_for_element_to_be_visible(self, locator_address=ReportsListOfPlayer.edit_report_save_button)
         BasePage.wait_for_menu_extension_to_appear(self, locator_address=Dashboard.menu_extend_reports_name_text_xpath)
+        time.sleep(3)
         BasePage.assert_element_text(self, driver=self.driver,
                                           text_element_xpath=ReportsListOfPlayer.edit_report_save_button,
                                           element_text_expected_text="SAVE")

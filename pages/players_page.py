@@ -4,7 +4,6 @@ from pages.base_page import BasePage
 from pages.dashboard_page import Dashboard
 
 
-# !!!!!FIXED WITH NEW FUNCTIONS!!!!
 class PlayersPage(BasePage):
 
     table_name_xpath = "//th[1]//span[1]/div/div[1]/text()"

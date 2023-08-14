@@ -4,7 +4,7 @@ import time
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 
-# !!!!!FIXED WITH NEW FUNCTIONS!!!!
+
 class LoginPage(BasePage):
     login_field_xpath = "//input[@id='login']"
     password_field_xpath = "//input[@id='password']"
@@ -18,14 +18,14 @@ class LoginPage(BasePage):
     sign_in_button_text_en = "SIGN IN"
 
     incorrect_password_error_xpath = "//div[3]/span"
-    # incorrect_password_error_text_xpath = "//div[1]/div[3]/span"
-    # incorrect_password_error_text_en = "Identifier or password invalid."
-    # incorrect_password_error_text_pl = "Identifier or password invalid."
+    incorrect_password_error_text_xpath = "//div[1]/div[3]/span"
+    incorrect_password_error_text_en = "Identifier or password invalid."
+    incorrect_password_error_text_pl = "Identifier or password invalid."
 
     no_login_data_error_xpath = "//div[1]/div[3]"
-    # no_login_data_text_xpath = "//div[3]/span/text()"
-    # no_login_data_text_en = "Please provide your username or your e-mail."
-    # no_login_data_text_pl = "Please provide your username or your e-mail."
+    no_login_data_text_xpath = "//div[3]/span/text()"
+    no_login_data_text_en = "Please provide your username or your e-mail."
+    no_login_data_text_pl = "Please provide your username or your e-mail."
 
     email = "user01@getnada.com"
     password = "Test-1234"

@@ -1,3 +1,4 @@
+import time
 import unittest
 import os
 from selenium import webdriver
@@ -8,8 +9,8 @@ from pages.password_remind_page import RemindPasswordPage
 from utils.settings import DRIVER_PATH, IMPLICITLY_WAIT
 from selenium.webdriver.chrome.service import Service
 
-# !!!!!FIXED WITH NEW FUNCTIONS!!!!
-class TestAddPlayer(unittest.TestCase):
+
+class TestPasswordRemindPage(unittest.TestCase):
 
     @classmethod
     def setUp(self):
@@ -22,20 +23,25 @@ class TestAddPlayer(unittest.TestCase):
 
     def test_password_reminder_redirect(self):
         """Checking if password reminder link redirects user to a webpage with /reminder in URL"""
+
         RemindPasswordPage.password_reminder_button_click(self)
         RemindPasswordPage.assert_correct_webpage_redirect(self)
 
     def test_password_reminder_redirect_language_check_en(self):
         """Checking if password reminder webpage has correct translation based upon language chosen from dropdown english"""
+
         RemindPasswordPage.password_reminder_button_click(self)
         RemindPasswordPage.language_change_to_english(self)
+        time.sleep(2)
         RemindPasswordPage.translation_check(self)
         RemindPasswordPage.remind_password_page_language_address_check(self)
 
     def test_password_reminder_redirect_language_check_pl(self):
         """Checking if password reminder webpage has correct translation based upon language chosen from dropdown polish"""
+
         RemindPasswordPage.password_reminder_button_click(self)
         RemindPasswordPage.language_change_to_polish(self)
+        time.sleep(2)
         RemindPasswordPage.translation_check(self)
         RemindPasswordPage.remind_password_page_language_address_check(self)
 

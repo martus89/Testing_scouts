@@ -3,11 +3,8 @@ from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 from pages.login_page import LoginPage
 
-# !!!!!FIXED WITH NEW FUNCTIONS!!!!
-class RemindPasswordPage(BasePage):
 
-    password_reminder_page_url_pl = "https://scouts-test.futbolkolektyw.pl/pl/remind"
-    password_reminder_page_url_en = "https://scouts-test.futbolkolektyw.pl/en/remind"
+class RemindPasswordPage(BasePage):
 
     password_reminder_box_heading_text_xpath = "//h5"
     password_reminder_box_heading_en = "Remind password"
@@ -33,32 +30,38 @@ class RemindPasswordPage(BasePage):
 
     def click_password_reminder(self):
         """Method supporting password_reminder_button_click(self)"""
+
         BasePage.wait_for_element_to_be_clickable(self, locator=LoginPage.password_reminder_field_text_xpath)
         return self.click_on_the_element(LoginPage.password_reminder_field_text_xpath)
 
     def password_reminder_button_click(self):
         """User click on language dropdown menu"""
+
         pass_rem = RemindPasswordPage(self.driver)
         pass_rem.click_password_reminder()
 
     def assert_correct_webpage_redirect(self):
         """Asserting 'remind' phrase in webpage address to confirm correct redirect"""
+
         my_page_url = BasePage.get_page_url(self)[41:]
         assert my_page_url == "remind"
         print("Page redirected to reminder correctly")
 
     def dropdown_menu_click_on_dropdown(self):
         """Method supporting dropdown_menu_click_on(self)"""
+
         BasePage.wait_for_element_to_be_clickable(self, locator=self.dropdown_menu)
         return self.click_on_the_element(LoginPage.dropdown_menu)
 
     def dropdown_menu_click_on(self):
         """User click on language dropdown menu"""
+
         dropdown_menu = RemindPasswordPage(self.driver)
         dropdown_menu.dropdown_menu_click_on_dropdown()
 
     def language_change_to_polish(self):
         """User changes language via dropdown to Polish"""
+
         RemindPasswordPage.dropdown_menu_click_on(self)
         time.sleep(2)
         self.driver.find_element(By.XPATH, '//div[3]/ul/li[1]').click()
@@ -66,6 +69,7 @@ class RemindPasswordPage(BasePage):
 
     def language_change_to_english(self):
         """User changes language via dropdown to English"""
+
         LoginPage.dropdown_menu_click_on(self)
         time.sleep(2)
         self.driver.find_element(By.XPATH, '//div[3]/ul/li[2]').click()
@@ -73,11 +77,13 @@ class RemindPasswordPage(BasePage):
 
     def language_dropdown_input_lang_detect_xpath_return(self):
         """Returns language chosen by user"""
+
         language_dropdown_input_lang_detect_xpath = self.driver.find_element(By.XPATH, "//div[1]//div[2]/div/div").text
         return language_dropdown_input_lang_detect_xpath
 
     def create_translation_dictionary(self):
         """Creates a translation dictionary"""
+
         password_reminder_box_heading_text_xpath = self.driver.find_element(By.XPATH, "//h5").text
         password_reminder_back_to_login_page_button_label_xpath = self.driver.find_element(By.XPATH, "//div[1]/div[1]/a").text
         password_reminder_submit_button_label_xpath = self.driver.find_element(By.XPATH, "//button/span[1]").text
@@ -95,6 +101,7 @@ class RemindPasswordPage(BasePage):
 
     def translation_check(self):
         """Based on language chosen in dropdown by user, checks if page elements have correct language"""
+
         RemindPasswordPage.create_translation_dictionary(self)
         if RemindPasswordPage.language_dropdown_input_lang_detect_xpath_return(self) == "Polski":
             page_dictionary = language_page_version_pl
@@ -110,6 +117,7 @@ class RemindPasswordPage(BasePage):
 
     def remind_password_page_language_address_check(self):
         """Checks language in webpage address and compares to one chosen by user in dropdown"""
+
         my_page_url = BasePage.get_page_url(self)[38:]
         if RemindPasswordPage.language_dropdown_input_lang_detect_xpath_return(self) == "Polski":
             assert my_page_url == "pl/remind"

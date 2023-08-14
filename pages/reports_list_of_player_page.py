@@ -5,15 +5,14 @@ from pages.dashboard_page import Dashboard
 from pages.players_page import PlayersPage
 
 
-# !!!!!FIXED WITH NEW FUNCTIONS!!!!
 
 class ReportsListOfPlayer(BasePage):
     actions_edit_button_row_1xpath = "//tr[1]/td[8]//button"
     reports_button_extended_menu = "//div[1]//ul[2]/div[3]"
     edit_report_save_button = "//div[2]/div[1]/button"
 
-    add_report_button_xpath = "//main/a/button"
-    add_report_label_xpath = "//a//span[1]"
+    add_report_button_xpath = "//*[contains(text(), 'Add Report') or contains(text(),'Dodaj raport')]"
+    add_report_label_xpath = "//span[contains(text(), 'Add Report') or contains(text(),'Dodaj raport')]"
     add_report_text_en = "ADD REPORT"
     add_report_text_pl = "DODAJ RAPORT"
 
@@ -80,7 +79,7 @@ class ReportsListOfPlayer(BasePage):
     def create_translation_dictionary(self):
         """Creates a translation dictionary"""
         time.sleep(2)
-        add_report_label_xpath = self.driver.find_element(By.XPATH, "//div[1]/main/a//span[1]").text
+        add_report_label_xpath = self.driver.find_element(By.XPATH, "//div[1]/main/a/button/span[1]").text
         my_team_label_text_xpath = self.driver.find_element(By.XPATH, "//th[1]").text
         my_team_score_label_text_xpath = self.driver.find_element(By.XPATH, "//th[2]").text
         enemy_team_score_label_text_xpath = self.driver.find_element(By.XPATH, "//th[3]").text
@@ -111,7 +110,7 @@ class ReportsListOfPlayer(BasePage):
             enemy_team_score_label_text_xpath: ReportsListOfPlayer.enemy_team_score_text_pl, enemy_team_label_text_xpath: ReportsListOfPlayer.enemy_team_text_pl,
             date_label_text_xpath: ReportsListOfPlayer.date_text_pl, last_mod_text_xpath: ReportsListOfPlayer.last_mod_text_pl,
             author_text_xpath: ReportsListOfPlayer.author_text_pl, actions_text_xpath: ReportsListOfPlayer.actions_text_pl,
-            menu_player_button_xpath: Dashboard.menu_players_name_pl, menu_extend_matches_name_text_xpath: Dashboard.menu_extend_matches_name_pl,
+            menu_extend_matches_name_text_xpath: Dashboard.menu_extend_matches_name_pl,
             menu_extend_reports_name_text_xpath: Dashboard.menu_extend_reports_name_pl
         }
 

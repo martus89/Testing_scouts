@@ -3,11 +3,8 @@ from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 from pages.dashboard_page import Dashboard
 
-# !!!!!FIXED WITH NEW FUNCTIONS!!!!
 
 class AddPlayer(BasePage):
-    add_player_page_url_en = "https://scouts-test.futbolkolektyw.pl/en/players/add"
-    add_player_page_url_pl = "https://scouts-test.futbolkolektyw.pl/pl/players/add"
 
     test_add_player_form_name_input = " "
     test_add_player_form_surname_input = " "

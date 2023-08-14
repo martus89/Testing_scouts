@@ -2,7 +2,7 @@ import time
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 
-# !!!!!FIXED WITH NEW FUNCTIONS!!!!
+
 class Dashboard(BasePage):
 
     players_count_text_xpath = "//div[2]/div[1]/div/div[1]"
@@ -93,7 +93,7 @@ class Dashboard(BasePage):
 
     menu_extend_player_name_xpath = "//ul[2]/div[1]"
 
-    menu_extend_matches_xpath = "//ul[2]/div[2]"
+    menu_extend_matches_xpath = "//span[contains(text(), 'Matches') or contains(text(), 'Mecze')]"
     menu_extend_matches_name_en = "Matches"
     menu_extend_matches_name_pl = "Mecze"
     menu_extend_matches_name_text_xpath = "//ul[2]/div[2]/div[2]/span"

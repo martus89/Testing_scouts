@@ -4,7 +4,6 @@ from selenium.webdriver.common.by import By
 from pages.dashboard_page import Dashboard
 
 
-# !!!!!FIXED WITH NEW FUNCTIONS!!!!
 class EditPlayer(BasePage):
 
     menu_player_name_xpath = "//ul[1]/div[2]/div[2]/span"

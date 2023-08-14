@@ -10,7 +10,7 @@ import os
 import random
 import time
 
-# !!!!!FIXED WITH NEW FUNCTIONS!!!!
+
 class TestPlayersDashboardPage(unittest.TestCase):
 
     @classmethod
@@ -39,6 +39,7 @@ class TestPlayersDashboardPage(unittest.TestCase):
     def test_download_file_verify_en(self):
         """Verifying if file gets downloaded to the desired file inside the project and renamed correctly upon
         login with English language"""
+
         LoginPage.user_log_in_to_english(self)
         Dashboard.dashboard_menu_players_button_click(self)
         PlayersPage.initiate_download_players_dashboard_file(self)
@@ -56,6 +57,7 @@ class TestPlayersDashboardPage(unittest.TestCase):
     def test_download_file_verify_pl(self):
         """Verifying if file gets downloaded to the desired file inside the project and renamed correctly upon
         login with Polish language"""
+
         LoginPage.user_log_in_to_polish(self)
         Dashboard.dashboard_menu_players_button_click(self)
         PlayersPage.initiate_download_players_dashboard_file(self)
@@ -72,6 +74,7 @@ class TestPlayersDashboardPage(unittest.TestCase):
 
     def test_players_page_translation_check(self):
         """Asserting correct translation of players page. Time sleeps added to support test execution."""
+
         LoginPage.user_log_in_to_polish(self)
         Dashboard.dashboard_menu_players_button_click(self)
         BasePage.wait_for_element_to_be_visible(self, locator_address=PlayersPage.players_file_download_button_xpath)

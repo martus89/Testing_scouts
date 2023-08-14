@@ -59,7 +59,7 @@ class BasePage:
             :return: None
         """
         element = driver.find_element(by=By.XPATH, value=text_element_xpath).text
-        print(f"Asserting text of the element is {element_text_expected_text} vs {element}... ")
+        print(f"Asserting text of the element {text_element_xpath} is {element_text_expected_text} vs {element}... ")
         assert element_text_expected_text == element
 
     def assert_page_redirected_correctly(self, word_to_check):
