@@ -20,7 +20,7 @@ class TestMatchesListPage(unittest.TestCase):
         self.driver.implicitly_wait(IMPLICITLY_WAIT)
         print("\nRunning test...")
 
-    def test_path_to_matches_per_player_list_en_(self):
+    def test_path_to_matches_per_player_list_en(self):
         """Checks webpage translation upon English language choice at login and if user is redirected
         to get to correct webpage upon clicking"""
 

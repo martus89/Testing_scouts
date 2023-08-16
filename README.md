@@ -31,11 +31,18 @@ Some of functionalities covered:
 
 
 <br>
-<br>
 
-*POSSIBLY TBD FURTHER BASED ON SKILLS*
+### Additional:
 
-<br>
+- **Test cases** to be found [HERE](https://docs.google.com/spreadsheets/d/1Zidr-zIROcX4rJZMPQs4EQ_RRKSZXOOJRJkC8WPOBjA/edit?usp=sharing)
+
+- **Bugs report** to be found [HERE](https://drive.google.com/drive/folders/1kUa7y5Pfk-Lp_qwvKz7-ir7h8G6LrtBn?usp=drive_link)
+
+<br><br>
+
+*POSSIBLY TBD FURTHER BASED ON SKILLS...*
+
+<br><br>
 
 
 

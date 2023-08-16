@@ -31,10 +31,10 @@ class LoginPage(BasePage):
     password = "Test-1234"
     incorrect_password = "Pest-123401332ABC"
 
-    login_url_en = "https://scouts-test.futbolkolektyw.pl/en/login?redirected=true"
-    login_url_pl = "https://scouts-test.futbolkolektyw.pl/pl/login?redirected=true"
-    login_url2_en = "https://scouts-test.futbolkolektyw.pl/en/login"
-    login_url2_pl = "https://scouts-test.futbolkolektyw.pl/pl/login"
+    login_url_en = "https://dareit.futbolkolektyw.pl/en/login?redirected=true"
+    login_url_pl = "https://dareit.futbolkolektyw.pl/pl/login?redirected=true"
+    login_url2_en = "https://dareit.futbolkolektyw.pl/login"
+    login_url2_pl = "https://dareit.futbolkolektyw.pl/login"
 
     password_reminder_field_text_xpath = "//div[1]/a"
     password_reminder_text_pl = "Przypomnij hasło"
