@@ -16,7 +16,7 @@ class TestDashboardPage(unittest.TestCase):
         os.chmod(DRIVER_PATH, 755)
         self.driver_service = Service(executable_path=DRIVER_PATH)
         self.driver = webdriver.Chrome(service=self.driver_service)
-        self.driver.get('https://scouts-test.futbolkolektyw.pl/en')
+        self.driver.get('https://dareit.futbolkolektyw.pl/en')
         self.driver.implicitly_wait(IMPLICITLY_WAIT)
         print("\nRunning test...")
 
@@ -34,7 +34,7 @@ class TestDashboardPage(unittest.TestCase):
         Dashboard.dashboard_activity_last_created_match_click(self)
         BasePage.assert_element_text(self, driver=self.driver,
                                           text_element_xpath=AddPlayer.add_player_submit_button_xpath,
-                                          element_text_expected_text=BasePage.get_element_text(self, locator=AddPlayer.add_player_submit_button_xpath))
+                                          element_text_expected_text="SUBMIT")
 
     def test_login_language_pl(self):
         """Asserts webpage address and language translation upon login with Polish chosen as optional language"""

@@ -1,4 +1,5 @@
 import os
+import time
 import unittest
 from selenium import webdriver
 from pages.base_page import BasePage
@@ -15,7 +16,7 @@ class TestUserLoginPage(unittest.TestCase):
         os.chmod(DRIVER_PATH, 755)
         self.driver_service = Service(executable_path=DRIVER_PATH)
         self.driver = webdriver.Chrome(service=self.driver_service)
-        self.driver.get('https://scouts-test.futbolkolektyw.pl/en')
+        self.driver.get('https://dareit.futbolkolektyw.pl/en')
         self.driver.implicitly_wait(IMPLICITLY_WAIT)
         print("\nRunning test...")
 
@@ -26,15 +27,15 @@ class TestUserLoginPage(unittest.TestCase):
         LoginPage.assert_user_incorrect_login_error_presence(self)
         BasePage.assert_element_text(self, driver=self.driver,
                                           text_element_xpath=LoginPage.incorrect_password_error_xpath,
-                                          element_text_expected_text=BasePage.get_element_text(self, locator=LoginPage.incorrect_password_error_xpath))
-        BasePage.assert_title_of_page_for_testing(self, expected_title=BasePage.get_page_title(self))
+                                          element_text_expected_text="Identifier or password invalid.")
+        BasePage.assert_title_of_page_for_testing(self, expected_title="Scouts panel - sign in")
 
     def test_user_log_in_to_dashboard(self):
         """Asserts user will be able to log in with correct data and forwarded to dashboard"""
 
         LoginPage.user_log_in(self)
         BasePage.wait_for_element_to_be_clickable(self, locator=Dashboard.add_player_button_xpath)
-        BasePage.assert_title_of_page_for_testing(self, expected_title=BasePage.get_page_title(self))
+        BasePage.assert_title_of_page_for_testing(self, expected_title="Scouts panel - sign in")
 
     def test_polish_language_translation_check(self):
         """Asserts all webpage is translated to Polish and webpage address corresponds with it"""

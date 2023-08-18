@@ -16,7 +16,7 @@ class TestMatchesListPage(unittest.TestCase):
         os.chmod(DRIVER_PATH, 755)
         self.driver_service = Service(executable_path=DRIVER_PATH)
         self.driver = webdriver.Chrome(service=self.driver_service)
-        self.driver.get('https://scouts-test.futbolkolektyw.pl/en')
+        self.driver.get('https://dareit.futbolkolektyw.pl/en')
         self.driver.implicitly_wait(IMPLICITLY_WAIT)
         print("\nRunning test...")
 
@@ -31,6 +31,7 @@ class TestMatchesListPage(unittest.TestCase):
         MatchesListOfPlayer.webpage_dictionary_language_check(self)
         BasePage.webpage_language_address_check(self)
         BasePage.assert_page_redirected_correctly(self, word_to_check="matches")
+
         BasePage.assert_element_text(self, driver=self.driver,
                                           text_element_xpath=MatchesListOfPlayer.add_match_label_xpath,
                                           element_text_expected_text=BasePage.get_element_text(self, locator=MatchesListOfPlayer.add_match_label_xpath))
@@ -46,6 +47,7 @@ class TestMatchesListPage(unittest.TestCase):
         MatchesListOfPlayer.webpage_dictionary_language_check(self)
         BasePage.webpage_language_address_check(self)
         BasePage.assert_page_redirected_correctly(self, word_to_check="matches")
+
         BasePage.assert_element_text(self, driver=self.driver,
                                           text_element_xpath=MatchesListOfPlayer.add_match_label_xpath,
                                           element_text_expected_text=BasePage.get_element_text(self, locator=MatchesListOfPlayer.add_match_label_xpath))

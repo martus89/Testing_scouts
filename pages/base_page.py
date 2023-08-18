@@ -64,7 +64,7 @@ class BasePage:
 
     def assert_page_redirected_correctly(self, word_to_check):
         """Checking if user gets redirected to correct subpage base on subpage naming convention"""
-        print(f"Checking if /'{word_to_check}'/ is in URL {BasePage.get_page_url(self)[38:]} to confirm correct redirect")
+        print(f"Checking if /'{word_to_check}'/ is in URL {BasePage.get_page_url(self)[33:]} to confirm correct redirect")
         self.assertIn(word_to_check, BasePage.get_page_url(self))
 
     def language_detect_from_dropdown(self):
@@ -83,7 +83,7 @@ class BasePage:
 
     def webpage_language_address_check(self):
         """Checks language in webpage address and compares to one chosen by user in dropdown"""
-        language_slicing = BasePage.get_page_url(self)[38:]
+        language_slicing = BasePage.get_page_url(self)[33:]
         language_detect_xpath = self.driver.find_element(By.XPATH, "//span[contains(text(), 'English') or contains(text(), 'Polski')]").text
 
         if language_detect_xpath == "Polski":

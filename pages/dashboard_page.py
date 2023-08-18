@@ -67,15 +67,15 @@ class Dashboard(BasePage):
     activity_last_updated_report_name_pl = "Ostatnio zaaktualizowany raport"
     activity_last_updated_report_link_xpath = "//a[5]/button"
 
-    menu_main_page_redirect_url_en = "https://scouts-test.futbolkolektyw.pl/en"
-    menu_main_page_redirect_url_pl = "https://scouts-test.futbolkolektyw.pl/pl"
+    menu_main_page_redirect_url_en = "https://dareit.futbolkolektyw.pl/en"
+    menu_main_page_redirect_url_pl = "https://dareit.futbolkolektyw.pl/pl"
     menu_main_page_xpath = "//ul[1]/div[1]"
     menu_main_name_page_en = "Main page"
     menu_main_name_page_pl = "Strona główna"
     menu_main_name_text_xpath = "//ul[1]/div[1]/div[2]/span"
 
-    menu_players_page_redirect_url_en = "https://scouts-test.futbolkolektyw.pl/en/players"
-    menu_players_page_redirect_url_pl = "https://scouts-test.futbolkolektyw.pl/pl/players"
+    menu_players_page_redirect_url_en = "https://dareit.futbolkolektyw.pl/en/players"
+    menu_players_page_redirect_url_pl = "https://dareit.futbolkolektyw.pl/pl/players"
     menu_players_name_text_xpath = "//ul[1]/div[2]/div[2]/span"
     menu_player_button_xpath = "//ul[1]/div[2]"
     menu_players_name_en = "Players"
@@ -85,7 +85,7 @@ class Dashboard(BasePage):
     menu_language_name_en = "English"
     menu_language_name_pl = "Polski"
 
-    menu_logout_page_redirect_url = "https://scouts-test.futbolkolektyw.pl/login"
+    menu_logout_page_redirect_url = "https://dareit.futbolkolektyw.pl/en/login"
     menu_logout_xpath = "//ul[2]/div[2]"
     menu_logout_name_en = "Sign out"
     menu_logout_name_pl = "Wyloguj"

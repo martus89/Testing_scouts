@@ -18,7 +18,7 @@ class TestAddPlayer(unittest.TestCase):
         os.chmod(DRIVER_PATH, 755)
         self.driver_service = Service(executable_path=DRIVER_PATH)
         self.driver = webdriver.Chrome(service=self.driver_service)
-        self.driver.get('https://scouts-test.futbolkolektyw.pl/en')
+        self.driver.get('https://dareit.futbolkolektyw.pl/en')
         self.driver.implicitly_wait(IMPLICITLY_WAIT)
         print("\nRunning test...")
 
@@ -46,19 +46,13 @@ class TestAddPlayer(unittest.TestCase):
         BasePage.assert_title_of_page_for_testing(self, expected_title="Dodaj gracza")
         BasePage.assert_page_redirected_correctly(self, word_to_check="add")
 
-    def test_add_player_restricted_data_only_and_language_change(self):
-        """Asserts language translation of webpage upon choice of English at login, filling in restricted data, switching
-        language and possibility of submitting wrong data. Asserts if side menu gets extended upon submitting players data.
-        Time sleeps added to support test execution.
-        Caution:POSSIBLE FALSE POSITIVE!"""
+    def test_add_player_language_change(self):
+        """Asserts language translation of webpage upon choice of English at login, switching
+        language and possibility of submitting wrong data.
+        Time sleeps added to support test execution."""
 
         LoginPage.user_log_in_to_english(self)
         AddPlayer.path_to_add_player(self)
-        BasePage.language_detect_from_dropdown(self)
-        AddPlayer.create_translation_dictionary(self)
-        AddPlayer.address_dictionary_translation_check(self)
-        BasePage.webpage_language_address_check(self)
-        AddPlayer.add_player_form_restricted_data_only_fill_up(self)
         Dashboard.dashboard_menu_language_change_button_click(self)
         print("Language changed manually via menu option")
         time.sleep(2)
@@ -66,6 +60,22 @@ class TestAddPlayer(unittest.TestCase):
         AddPlayer.create_translation_dictionary(self)
         AddPlayer.address_dictionary_translation_check(self)
         BasePage.webpage_language_address_check(self)
+        BasePage.wait_for_menu_extension_to_appear(self, locator_address=EditPlayer.menu_extension_check_reports_visible_xpath)
+        time.sleep(2)
+        BasePage.assert_page_redirected_correctly(self, word_to_check="edit")
+
+    def test_add_player_restricted_data_only(self):
+        """Asserts possibility of submitting incorrect data format. Asserts if side menu gets extended upon submitting players data.
+        Time sleeps added to support test execution.
+        Caution:POSSIBLE FALSE POSITIVE!"""
+
+        LoginPage.user_log_in_to_english(self)
+        AddPlayer.path_to_add_player(self)
+        AddPlayer.add_player_form_restricted_data_only_fill_up(self)
+        Dashboard.dashboard_menu_language_change_button_click(self)
+        print("Language changed manually via menu option")
+        time.sleep(2)
+        BasePage.language_detect_from_dropdown(self)
         AddPlayer.add_player_form_submit_button_click(self)
         BasePage.wait_for_menu_extension_to_appear(self, locator_address=EditPlayer.menu_extension_check_reports_visible_xpath)
         time.sleep(2)

@@ -16,7 +16,7 @@ class TestEditMatchPage(unittest.TestCase):
         os.chmod(DRIVER_PATH, 755)
         self.driver_service = Service(executable_path=DRIVER_PATH)
         self.driver = webdriver.Chrome(service=self.driver_service)
-        self.driver.get('https://scouts-test.futbolkolektyw.pl/en')
+        self.driver.get('https://dareit.futbolkolektyw.pl/en')
         self.driver.implicitly_wait(IMPLICITLY_WAIT)
         print("\nRunning test...")
 
@@ -31,9 +31,11 @@ class TestEditMatchPage(unittest.TestCase):
         EditMatch.webpage_dictionary_language_check(self)
         BasePage.webpage_language_address_check(self)
         BasePage.assert_page_redirected_correctly(self, word_to_check="edit")
+
         BasePage.assert_element_text(self, driver=self.driver,
-                                          text_element_xpath=EditMatch.edit_match_upper_heading_text,
-                                          element_text_expected_text=BasePage.get_element_text(self, locator=EditMatch.edit_match_upper_heading_text))
+                                     text_element_xpath=EditMatch.edit_match_upper_heading_text,
+                                     element_text_expected_text=BasePage.get_element_text(self,
+                                                                                          locator=EditMatch.edit_match_upper_heading_text))
 
     def test_path_to_matches_per_player_list_pl(self):
         """Checks webpage translation upon Polish language choice at login and if user is redirected
@@ -46,9 +48,11 @@ class TestEditMatchPage(unittest.TestCase):
         EditMatch.webpage_dictionary_language_check(self)
         BasePage.webpage_language_address_check(self)
         BasePage.assert_page_redirected_correctly(self, word_to_check="edit")
+
         BasePage.assert_element_text(self, driver=self.driver,
-                                          text_element_xpath=EditMatch.edit_match_upper_heading_text,
-                                          element_text_expected_text=BasePage.get_element_text(self, locator=EditMatch.edit_match_upper_heading_text))
+                                     text_element_xpath=EditMatch.edit_match_upper_heading_text,
+                                     element_text_expected_text=BasePage.get_element_text(self,
+                                                                                          locator=EditMatch.edit_match_upper_heading_text))
 
     def test_matches_per_player_list_pl_lang_switch(self):
         """Checks webpage translation upon Polish language choice at login and if user is redirected
@@ -65,9 +69,12 @@ class TestEditMatchPage(unittest.TestCase):
         EditMatch.webpage_dictionary_language_check(self)
         BasePage.webpage_language_address_check(self)
         BasePage.assert_page_redirected_correctly(self, word_to_check="edit")
+
         BasePage.assert_element_text(self, driver=self.driver,
-                                          text_element_xpath=EditMatch.edit_match_upper_heading_text,
-                                          element_text_expected_text=BasePage.get_element_text(self, locator=EditMatch.edit_match_upper_heading_text))
+                                 text_element_xpath=EditMatch.edit_match_upper_heading_text,
+                                 element_text_expected_text=BasePage.get_element_text(self,
+                                                                                      locator=EditMatch.edit_match_upper_heading_text))
+
 
     @classmethod
     def tearDown(self):

@@ -572,9 +572,9 @@ jQuery.cookie = function(name, value, options) {
     <body>
         <div id="container">
             <div id="header">
-                <div class="time" xmlns="">56.75 s</div>
+                <div class="time" xmlns="">41.82 s</div>
                 <h1>
-                    pytest for dashboard_test.TestDashboardPage.test_login_language_pl: <strong><span class="total" xmlns="http://www.w3.org/1999/xhtml">1 total, </span><span class="passed">1 passed</span></strong>
+                    pytest for dashboard_test.TestDashboardPage.test_login_language_pl: <strong><span class="total" xmlns="http://www.w3.org/1999/xhtml">1 total, </span><span class="failed">1 failed</span></strong>
                 </h1>
                 <div id="treecontrol">
                     <ul>
@@ -591,23 +591,26 @@ jQuery.cookie = function(name, value, options) {
             </div>
             <div id="content">
                 <ul id="tree">
-                    <li xmlns="" class="level top open">
+                    <li xmlns="" class="level top failed open">
                         <span><em class="time">
-                                <div class="time">56.75 s</div>
+                                <div class="time">41.82 s</div>
                             </em>dashboard_test</span>
                         <ul>
-                            <li class="level suite open">
+                            <li class="level suite failed open">
                                 <span><em class="time">
-                                        <div class="time">56.75 s</div>
+                                        <div class="time">41.82 s</div>
                                     </em>TestDashboardPage</span>
                                 <ul>
-                                    <li class="level test">
+                                    <li class="level test failed open">
                                         <span><em class="time">
-                                                <div class="time">56.75 s</div>
-                                            </em><em class="status">passed</em>test_login_language_pl</span>
+                                                <div class="time">41.82 s</div>
+                                            </em><em class="status">failed</em>test_login_language_pl</span>
                                         <ul>
                                             <li class="text">
-                                                <span class="stdout">PASSED      [100%]<br/>Running test...<br/>Current language chosen is Polski and can be changed to English<br/>Page dictionary is in Polish<br/>Dictionary checked - everything seems in order<br/>Page URL shows language to be Polski<br/>Shutting down test<br/></span>
+                                                <span class="stdout">FAILED      [100%]<br/>Running test...<br/>Current language chosen is Polski and can be changed to English<br/>Page dictionary is in Polish<br/>Shutting down test<br/></span>
+                                            </li>
+                                            <li class="text">
+                                                <span class="stderr">dashboard_test.py:38 (TestDashboardPage.test_login_language_pl)self = <dashboard_test.TestDashboardPage testMethod=test_login_language_pl><br/>    def test_login_language_pl(self):<br/>        """Asserts webpage address and language translation upon login with Polish chosen as optional language"""<br/>    <br/>        LoginPage.user_log_in_to_polish(self)<br/>        Dashboard.dashboard_menu_main_page_button_click(self)<br/>        Dashboard.create_translation_dictionary(self)<br/>>       Dashboard.webpage_dictionary_language_check(self)<br/>dashboard_test.py:45: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/>self = <dashboard_test.TestDashboardPage testMethod=test_login_language_pl><br/>    def webpage_dictionary_language_check(self):<br/>        """Based on language chosen by user, checks if page elements display correct language"""<br/>        time.sleep(2)<br/>        language_options = ["Polski", "English"]<br/>        page_dictionary = {}<br/>    <br/>        for index, language_name in enumerate(language_options):<br/>            if language_name == language_detect_xpath:<br/>                print(f"Current language chosen is {language_options[index-1]} and can be changed to {language_detect_xpath}")<br/>            else:<br/>                continue<br/>    <br/>        if language_detect_xpath == "Polski":<br/>            page_dictionary = language_page_version_en<br/>            print("Page dictionary is in English")<br/>        elif language_detect_xpath == "English":<br/>            page_dictionary = language_page_version_pl<br/>            print("Page dictionary is in Polish")<br/>        else:<br/>            print("Language not detected - check your webpage")<br/>    <br/>        for field_name in page_dictionary:<br/>>           assert field_name == page_dictionary[field_name]<br/>E           AssertionError<br/>../pages/dashboard_page.py:311: AssertionError<br/></span>
                                             </li>
                                         </ul>
                                     </li>
@@ -619,7 +622,7 @@ jQuery.cookie = function(name, value, options) {
             </div>
         </div>
         <div id="footer">
-            <p>Generated by PyCharm on 8/15/23, 12:15 AM</p>
+            <p>Generated by PyCharm on 8/18/23, 12:55 AM</p>
         </div>
     </body>
 </html>

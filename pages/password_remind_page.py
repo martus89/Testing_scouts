@@ -6,6 +6,9 @@ from pages.login_page import LoginPage
 
 class RemindPasswordPage(BasePage):
 
+    password_reminder_page_url_pl = "https://dareit.futbolkolektyw.pl/pl/remind"
+    password_reminder_page_url_en = "https://dareit.futbolkolektyw.pl/en/remind"
+
     password_reminder_box_heading_text_xpath = "//h5"
     password_reminder_box_heading_en = "Remind password"
     password_reminder_box_heading_pl = "Przypomnij hasło"
@@ -43,8 +46,8 @@ class RemindPasswordPage(BasePage):
     def assert_correct_webpage_redirect(self):
         """Asserting 'remind' phrase in webpage address to confirm correct redirect"""
 
-        my_page_url = BasePage.get_page_url(self)[41:]
-        assert my_page_url == "remind"
+        my_page_url = BasePage.get_page_url(self)[33:]
+        self.assertIn("remind", my_page_url)
         print("Page redirected to reminder correctly")
 
     def dropdown_menu_click_on_dropdown(self):
@@ -118,7 +121,7 @@ class RemindPasswordPage(BasePage):
     def remind_password_page_language_address_check(self):
         """Checks language in webpage address and compares to one chosen by user in dropdown"""
 
-        my_page_url = BasePage.get_page_url(self)[38:]
+        my_page_url = BasePage.get_page_url(self)[33:]
         if RemindPasswordPage.language_dropdown_input_lang_detect_xpath_return(self) == "Polski":
             assert my_page_url == "pl/remind"
             print("Page correctly redirected in Polish")

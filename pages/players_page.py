@@ -40,8 +40,8 @@ class PlayersPage(BasePage):
 
     players_file_download_button_xpath = "//button[contains(@data-testid,'Download CSV')]"
     players_edit_first_player_from_table_xpath = "//td[1]"
-    players_page_url_en = "https://scouts-test.futbolkolektyw.pl/en/players"
-    players_page_url_pl = "https://scouts-test.futbolkolektyw.pl/pl/players"
+    players_page_url_en = "https://dareit.futbolkolektyw.pl/en/players"
+    players_page_url_pl = "https://dareit.futbolkolektyw.pl/pl/players"
 
     def players_dashboard_download_click_on_download_button(self):
         """Method supporting initiate_download_players_dashboard_file(self)"""

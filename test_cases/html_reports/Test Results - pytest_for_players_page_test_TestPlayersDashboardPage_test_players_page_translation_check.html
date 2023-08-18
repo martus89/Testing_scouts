@@ -572,9 +572,9 @@ jQuery.cookie = function(name, value, options) {
     <body>
         <div id="container">
             <div id="header">
-                <div class="time" xmlns="">1 m 10 s</div>
+                <div class="time" xmlns="">58.68 s</div>
                 <h1>
-                    pytest for players_page_test.TestPlayersDashboardPage.test_players_page_translation_check: <strong><span class="total" xmlns="http://www.w3.org/1999/xhtml">1 total, </span><span class="passed">1 passed</span></strong>
+                    pytest for players_page_test.TestPlayersDashboardPage.test_players_page_translation_check: <strong><span class="total" xmlns="http://www.w3.org/1999/xhtml">1 total, </span><span class="failed">1 failed</span></strong>
                 </h1>
                 <div id="treecontrol">
                     <ul>
@@ -591,23 +591,26 @@ jQuery.cookie = function(name, value, options) {
             </div>
             <div id="content">
                 <ul id="tree">
-                    <li xmlns="" class="level top open">
+                    <li xmlns="" class="level top failed open">
                         <span><em class="time">
-                                <div class="time">1 m 10 s</div>
+                                <div class="time">58.68 s</div>
                             </em>players_page_test</span>
                         <ul>
-                            <li class="level suite open">
+                            <li class="level suite failed open">
                                 <span><em class="time">
-                                        <div class="time">1 m 10 s</div>
+                                        <div class="time">58.68 s</div>
                                     </em>TestPlayersDashboardPage</span>
                                 <ul>
-                                    <li class="level test">
+                                    <li class="level test failed open">
                                         <span><em class="time">
-                                                <div class="time">1 m 10 s</div>
-                                            </em><em class="status">passed</em>test_players_page_translation_check</span>
+                                                <div class="time">58.68 s</div>
+                                            </em><em class="status">failed</em>test_players_page_translation_check</span>
                                         <ul>
                                             <li class="text">
-                                                <span class="stdout">PASSED [100%]<br/>Running test...<br/>Webpage element is visible as planned<br/>Current language chosen is Polski and can be changed to English<br/>Page dictionary is in Polish<br/>Dictionary checked - everything seems in order<br/>Page URL shows language to be Polski<br/>Checking if /'players'/ is in URL pl/players to confirm correct redirect<br/>Language changed manually via menu option<br/>Current language chosen is English and can be changed to Polski<br/>Page dictionary is in English<br/>Dictionary checked - everything seems in order<br/>Page URL shows language to be English<br/>Checking if /'players'/ is in URL en/players to confirm correct redirect<br/>Shutting down test<br/></span>
+                                                <span class="stdout">FAILED [100%]<br/>Running test...<br/>Webpage element is visible as planned<br/>Current language chosen is Polski and can be changed to English<br/>Page dictionary is in Polish<br/>Dictionary checked - everything seems in order<br/>Page URL shows language to be Polski<br/>Checking if /'players'/ is in URL pl/players to confirm correct redirect<br/>Language changed manually via menu option<br/>Current language chosen is English and can be changed to Polski<br/>Page dictionary is in English<br/>Shutting down test<br/></span>
+                                            </li>
+                                            <li class="text">
+                                                <span class="stderr">players_page_test.py:74 (TestPlayersDashboardPage.test_players_page_translation_check)self = <players_page_test.TestPlayersDashboardPage testMethod=test_players_page_translation_check><br/>    def test_players_page_translation_check(self):<br/>        """Asserting correct translation of players page. Time sleeps added to support test execution."""<br/>    <br/>        LoginPage.user_log_in_to_polish(self)<br/>        Dashboard.dashboard_menu_players_button_click(self)<br/>        BasePage.wait_for_element_to_be_visible(self, locator_address=PlayersPage.players_file_download_button_xpath)<br/>        PlayersPage.create_translation_dictionary(self)<br/>        PlayersPage.webpage_dictionary_language_check(self)<br/>        BasePage.webpage_language_address_check(self)<br/>        BasePage.assert_page_redirected_correctly(self, word_to_check="players")<br/>        Dashboard.dashboard_menu_language_change_button_click(self)<br/>        print("Language changed manually via menu option")<br/>        time.sleep(3)<br/>        PlayersPage.create_translation_dictionary(self)<br/>>       PlayersPage.webpage_dictionary_language_check(self)<br/>players_page_test.py:89: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/>self = <players_page_test.TestPlayersDashboardPage testMethod=test_players_page_translation_check><br/>    def webpage_dictionary_language_check(self):<br/>        """Based on language chosen by user, checks if page elements display correct language"""<br/>        time.sleep(2)<br/>        language_options = ["Polski", "English"]<br/>        page_dictionary = {}<br/>    <br/>        for index, language_name in enumerate(language_options):<br/>            if language_name == language_detect_xpath:<br/>                print(f"Current language chosen is {language_options[index-1]} and can be changed to {language_detect_xpath}")<br/>            else:<br/>                continue<br/>    <br/>        if language_detect_xpath == "Polski":<br/>            page_dictionary = language_page_version_en<br/>            print("Page dictionary is in English")<br/>        elif language_detect_xpath == "English":<br/>            page_dictionary = language_page_version_pl<br/>            print("Page dictionary is in Polish")<br/>        else:<br/>            print("Language not detected - check your webpage")<br/>    <br/>        for field_name in page_dictionary:<br/>>           assert field_name == page_dictionary[field_name]<br/>E           AssertionError<br/>../pages/players_page.py:130: AssertionError<br/></span>
                                             </li>
                                         </ul>
                                     </li>
@@ -619,7 +622,7 @@ jQuery.cookie = function(name, value, options) {
             </div>
         </div>
         <div id="footer">
-            <p>Generated by PyCharm on 8/15/23, 12:29 AM</p>
+            <p>Generated by PyCharm on 8/18/23, 2:17 AM</p>
         </div>
     </body>
 </html>
