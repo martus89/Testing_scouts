@@ -27,7 +27,7 @@ class TestUserLoginPage(unittest.TestCase):
         LoginPage.assert_user_incorrect_login_error_presence(self)
         BasePage.assert_element_text(self, driver=self.driver,
                                           text_element_xpath=LoginPage.incorrect_password_error_xpath,
-                                          element_text_expected_text="Identifier or password invalid.")
+                                          element_text_expected_text=LoginPage.incorrect_password_error_text_en)
         BasePage.assert_title_of_page_for_testing(self, expected_title="Scouts panel - sign in")
 
     def test_user_log_in_to_dashboard(self):
