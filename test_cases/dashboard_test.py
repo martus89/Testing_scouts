@@ -33,8 +33,8 @@ class TestDashboardPage(unittest.TestCase):
         LoginPage.user_log_in(self)
         Dashboard.dashboard_activity_last_created_match_click(self)
         BasePage.assert_element_text(self, driver=self.driver,
-                                          text_element_xpath=AddPlayer.add_player_submit_button_xpath,
-                                          element_text_expected_text=BasePage.get_element_text(self, locator=AddPlayer.add_player_submit_button_xpath))
+                                     text_element_xpath=AddPlayer.add_player_submit_button_xpath,
+                                     element_text_expected_text=AddPlayer.add_player_submit_button_name_en)
 
     def test_login_language_pl(self):
         """Asserts webpage address and language translation upon login with Polish chosen as optional language"""

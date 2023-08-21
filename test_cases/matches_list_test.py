@@ -33,7 +33,7 @@ class TestMatchesListPage(unittest.TestCase):
         BasePage.assert_page_redirected_correctly(self, word_to_check="matches")
         BasePage.assert_element_text(self, driver=self.driver,
                                           text_element_xpath=MatchesListOfPlayer.add_match_label_xpath,
-                                          element_text_expected_text=BasePage.get_element_text(self, locator=MatchesListOfPlayer.add_match_label_xpath))
+                                          element_text_expected_text=MatchesListOfPlayer.add_match_text_en)
 
     def test_path_to_matches_per_player_list_pl(self):
         """Checks webpage translation upon Polish language choice at login and if user is redirected
@@ -48,7 +48,7 @@ class TestMatchesListPage(unittest.TestCase):
         BasePage.assert_page_redirected_correctly(self, word_to_check="matches")
         BasePage.assert_element_text(self, driver=self.driver,
                                           text_element_xpath=MatchesListOfPlayer.add_match_label_xpath,
-                                          element_text_expected_text=BasePage.get_element_text(self, locator=MatchesListOfPlayer.add_match_label_xpath))
+                                          element_text_expected_text=MatchesListOfPlayer.add_match_text_pl)
 
     def test_matches_per_player_list_pl_lang_switch(self):
         """Checks webpage translation upon Polish language choice at login and if user is redirected
@@ -68,6 +68,9 @@ class TestMatchesListPage(unittest.TestCase):
         MatchesListOfPlayer.webpage_dictionary_language_check(self)
         BasePage.webpage_language_address_check(self)
         BasePage.assert_page_redirected_correctly(self, word_to_check="matches")
+        BasePage.assert_element_text(self, driver=self.driver,
+                                          text_element_xpath=MatchesListOfPlayer.add_match_label_xpath,
+                                          element_text_expected_text=MatchesListOfPlayer.add_match_text_en)
 
     @classmethod
     def tearDown(self):
