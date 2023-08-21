@@ -11,12 +11,12 @@ Tests written with Python+Selenium for Scouts panel website as a part of my very
 
 Project has 2 branches:
 
-- main - covers some of basic functionalities of testing environment
-- test_prod - covers same functionalities of production environment
+- testing_environment - covers some of basic functionalities of testing environment
+- production_environment - covers same functionalities of production environment
 
 <br>
 
-### What to look at:
+### What was done:
 
 Some of functionalities covered:
 
