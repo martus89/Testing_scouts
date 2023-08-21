@@ -16,7 +16,7 @@ Project has 2 branches:
 
 <br>
 
-### What to look at:
+### What was done:
 
 Some of functionalities covered:
 
